@@ -1,0 +1,16 @@
+I0120 10:25:06.411611  218838 load.go:31] Reloading schema and connectors...
+I0120 10:25:06.463211  218838 control.go:100] [/emulator/skillswap 5c26] UpdateResources(): done
+Main schema: sources: schema/schema.gql [1992B] 
+Connector "example": sources: example/mutations.gql [1243B] example/queries.gql [1801B] 
+I0120 10:25:06.519179  218838 codegen.go:80] [connector "example" javascriptSdk] Generating sources into "/home/zakariya/SkillSwap/src/dataconnect-generated"
+I0120 10:25:06.528804  218838 collector.go:107] schema extensions wrote into "/home/zakariya/SkillSwap/dataconnect/.dataconnect/schema"
+Generated sources: main/input.gql [28173B] main/relation.gql [14318B] main/query.gql [5099B] main/mutation.gql [13679B] prelude.gql [73281B] main/implicit.gql [1261B] 
+I0120 10:25:06.529494  218838 collector.go:107] connector "example" javascriptSdk wrote into "/home/zakariya/SkillSwap/src/dataconnect-generated"
+Generated sources: angular/index.d.ts [3597B] angular/package.json [653B] angular/esm/package.json [17B] angular/index.cjs.js [3379B] angular/esm/index.esm.js [3172B] angular/README.md [49480B] esm/index.esm.js [3559B] .guides/config.json [236B] README.md [40937B] esm/package.json [17B] index.cjs.js [4049B] .guides/usage.md [3460B] .guides/setup.md [1631B] index.d.ts [8025B] package.json [864B] 
+I0120 10:25:06.531647  218838 installsdk.go:55] Package @dataconnect/generated is already installed. Skipping installation
+I0120 10:25:06.531702  218838 load.go:109] Finished reloading
+I0120 10:25:06.532335  218838 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:9399
+I0120 10:25:06.532389  218838 dev.go:104] Listening on address (HTTP + gRPC): [::1]:9399
+I0120 10:25:10.651537  218838 control.go:100] [/emulator/skillswap 1589] UpdateResources(): done
+Main schema: sources: schema/schema.gql [1992B] 
+Connector "example": sources: example/mutations.gql [1243B] example/queries.gql [1801B] 

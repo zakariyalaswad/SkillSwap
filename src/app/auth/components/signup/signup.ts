@@ -1,15 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { first } from 'rxjs';
+import { Route, Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-signup',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   standalone: true,
   templateUrl: './signup.html',
 })
 export class Signup {
+  constructor(private router:Router){}
 
   auth=inject(AuthService)
 
@@ -28,6 +29,7 @@ export class Signup {
     try{
       await this.auth.signup(this.form.value.email!,this.form.value.password!)
       console.log(this.form.value)
+      this.router.navigate([''])
     }catch(error){
       console.log(error)
     

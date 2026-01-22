@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl,Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-signin',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   standalone: true,
   templateUrl: './signin.html',
 })
 export class Signin {
+  constructor(private router:Router){}
   auth=inject(AuthService)
 
   form=new FormGroup({
@@ -17,8 +19,9 @@ export class Signin {
   })
   async login(){
     try{
-      await this.auth.signin(this.form.value.email!,this.form.value.password!)
-      console.log(this.form.value)
+      await this.auth.signin(this.form.value.email!,this.form.value.password!); 
+      console.log(this.form.value);
+      this.router.navigate(['']);
     }catch(error){
       console.log(error)
     

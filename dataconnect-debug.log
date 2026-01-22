@@ -1,16 +1,679 @@
-I0120 10:25:06.411611  218838 load.go:31] Reloading schema and connectors...
-I0120 10:25:06.463211  218838 control.go:100] [/emulator/skillswap 5c26] UpdateResources(): done
-Main schema: sources: schema/schema.gql [1992B] 
-Connector "example": sources: example/mutations.gql [1243B] example/queries.gql [1801B] 
-I0120 10:25:06.519179  218838 codegen.go:80] [connector "example" javascriptSdk] Generating sources into "/home/zakariya/SkillSwap/src/dataconnect-generated"
-I0120 10:25:06.528804  218838 collector.go:107] schema extensions wrote into "/home/zakariya/SkillSwap/dataconnect/.dataconnect/schema"
-Generated sources: main/input.gql [28173B] main/relation.gql [14318B] main/query.gql [5099B] main/mutation.gql [13679B] prelude.gql [73281B] main/implicit.gql [1261B] 
-I0120 10:25:06.529494  218838 collector.go:107] connector "example" javascriptSdk wrote into "/home/zakariya/SkillSwap/src/dataconnect-generated"
-Generated sources: angular/index.d.ts [3597B] angular/package.json [653B] angular/esm/package.json [17B] angular/index.cjs.js [3379B] angular/esm/index.esm.js [3172B] angular/README.md [49480B] esm/index.esm.js [3559B] .guides/config.json [236B] README.md [40937B] esm/package.json [17B] index.cjs.js [4049B] .guides/usage.md [3460B] .guides/setup.md [1631B] index.d.ts [8025B] package.json [864B] 
-I0120 10:25:06.531647  218838 installsdk.go:55] Package @dataconnect/generated is already installed. Skipping installation
-I0120 10:25:06.531702  218838 load.go:109] Finished reloading
-I0120 10:25:06.532335  218838 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:9399
-I0120 10:25:06.532389  218838 dev.go:104] Listening on address (HTTP + gRPC): [::1]:9399
-I0120 10:25:10.651537  218838 control.go:100] [/emulator/skillswap 1589] UpdateResources(): done
-Main schema: sources: schema/schema.gql [1992B] 
-Connector "example": sources: example/mutations.gql [1243B] example/queries.gql [1801B] 
+E0122 10:02:51.074480    4356 dev.go:83] Failed to load initial config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:02:51.075318    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+I0122 10:02:51.076304    4356 dev.go:104] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+E0122 10:03:01.084905    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:03:11.085021    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:03:21.076130    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:03:31.084940    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:03:41.084910    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:03:51.076016    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:03:51.076076    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:04:01.085291    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:04:11.085041    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:04:21.075975    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:04:31.084942    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:04:41.084944    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:04:51.076213    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:04:51.076275    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:05:01.075785    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:05:11.084999    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:05:21.081479    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:05:31.084895    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:05:41.084857    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:05:51.076682    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:05:51.076461    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:06:01.084383    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:06:11.085047    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:06:21.076027    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:06:31.084971    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:06:41.085176    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:06:51.076105    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:06:51.076161    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:07:01.076305    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:07:11.075993    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:07:21.075693    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:07:31.083958    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:07:41.084914    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:07:51.076088    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:07:51.076232    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:08:01.085424    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:08:11.083979    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:08:21.076095    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:08:31.085000    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:08:41.085034    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:08:51.076052    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:08:51.076173    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:09:01.085311    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:09:11.082188    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:09:21.076108    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:09:31.083949    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:09:41.084953    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:09:51.075983    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:09:51.076054    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:10:01.085213    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:10:11.084991    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:10:21.076101    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:10:31.084945    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:10:41.085007    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:10:51.076255    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:10:51.076338    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:11:01.084943    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:11:11.084943    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:11:21.075608    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:11:31.084940    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:11:41.084917    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:11:51.075952    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:11:51.076054    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:12:01.085118    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:12:11.084894    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:12:21.076257    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:12:31.084989    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:12:41.085380    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:12:51.076190    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:12:51.076285    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:13:01.085449    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:13:11.084608    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:13:21.075989    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:13:31.075924    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:13:41.084927    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:13:51.076081    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:13:51.076142    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:14:01.085023    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:14:11.085051    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:14:21.076534    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:14:31.084864    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:14:41.085094    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:14:51.075958    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:14:51.076070    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:15:01.085077    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:15:11.084949    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:15:21.076100    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:15:31.076447    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:15:41.075718    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:15:51.076274    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:15:51.076425    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:16:01.085634    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:16:11.084105    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:16:21.075562    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:16:31.084851    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:16:41.084965    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:16:51.076248    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:16:51.076335    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:17:01.085572    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:17:11.080574    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:17:21.076065    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:17:31.076442    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:17:41.076170    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:17:51.076254    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:17:51.076411    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:18:01.085670    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:18:11.084925    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:18:21.076161    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:18:31.085088    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:18:41.084911    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:18:51.076037    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:18:51.076107    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:19:01.084974    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:19:11.085067    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:19:21.075639    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:19:31.084006    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:19:41.084930    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:19:51.075654    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:19:51.075606    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:20:01.085452    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:20:11.083911    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:20:21.076062    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:20:31.084944    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:20:41.085111    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:20:51.075637    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:20:51.075721    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:21:01.084067    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:21:11.085057    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:21:21.076125    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:21:31.085400    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:21:41.084573    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:21:51.075545    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:21:51.076059    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:22:01.075859    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:22:11.076376    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:22:21.076368    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:22:31.084935    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:22:41.084961    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:22:51.076005    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:22:51.076040    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:23:01.085038    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:23:11.085253    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:23:21.075927    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:23:31.085015    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:23:41.085242    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:23:51.075973    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:23:51.076157    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:24:01.076591    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:24:11.075638    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:24:21.076480    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:24:31.084682    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:24:41.084960    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:24:51.076020    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:24:51.076123    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:25:01.084951    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:25:11.084972    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:25:21.076068    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:25:31.085055    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:25:41.085282    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:25:51.075606    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:25:51.075711    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:26:01.084975    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:26:11.076104    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:26:21.076140    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:26:31.085432    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:26:41.077241    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:26:51.075959    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:26:51.076125    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:27:01.083092    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:27:11.084009    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:27:21.075898    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:27:31.083574    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:27:41.084032    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:27:51.076405    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:27:51.076561    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:28:01.075701    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:28:10.219110    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:28:20.209732    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:28:30.219291    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:28:40.217171    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:28:50.210438    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:28:50.210581    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:29:00.218828    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:29:10.219117    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:29:20.209737    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:29:30.218188    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:29:40.211281    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:29:50.210332    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:29:50.210379    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:30:00.219053    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:30:10.219303    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:30:20.210171    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:30:30.209731    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:30:40.219275    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:30:50.209779    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:30:50.209895    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:31:00.219191    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:31:10.219041    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:31:20.210652    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:31:30.218989    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:31:40.218078    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:31:50.209611    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:31:50.209737    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:32:00.219009    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:32:10.219393    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:32:20.209978    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:32:30.216232    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:32:40.210032    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:32:50.210368    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:32:50.210451    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:33:00.219704    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:33:10.219011    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:33:20.210469    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:33:30.213453    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:33:40.219033    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:33:50.209696    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:33:50.209595    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:34:00.218198    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:34:10.219479    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:34:20.210197    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:34:30.216158    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:34:40.211541    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:34:50.210196    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:34:50.210415    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:35:00.219473    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:35:10.218212    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:35:20.210244    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:35:30.219039    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:35:40.219029    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:35:50.210119    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:35:50.210182    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:36:00.219411    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:36:10.219293    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:36:20.210272    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:36:30.219204    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:36:40.219049    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:36:50.210446    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:36:50.210156    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:37:00.209787    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:37:10.219047    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:37:20.210157    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:37:30.219061    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:37:40.213699    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:37:50.210176    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:37:50.210249    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:38:00.219035    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:38:10.219068    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:38:20.209772    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:38:30.218855    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:38:40.218125    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:38:50.210113    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:38:50.210210    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:39:00.216700    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:39:10.209802    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:39:20.210261    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:39:30.219043    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:39:40.219288    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:39:50.210172    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:39:50.210271    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:40:00.219520    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:40:10.218080    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:40:20.210292    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:40:30.219073    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:40:40.219070    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:40:50.210092    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:40:50.210216    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:41:00.219058    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:41:10.210148    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:41:20.210128    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:41:30.219397    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:41:40.218081    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:41:50.210212    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:41:50.210334    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:42:00.219161    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:42:10.219031    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:42:20.210207    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:42:30.219058    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:42:40.219151    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:42:50.210145    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:42:50.210258    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:43:00.218991    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:43:10.219407    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:43:20.209720    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:43:30.219175    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:43:40.219075    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:43:50.210240    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:43:50.210374    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:44:00.219016    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:44:10.219842    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:44:20.210734    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:44:30.219033    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:44:40.219074    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:44:50.210156    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:44:50.216449    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:45:00.219181    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:45:10.219047    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:45:20.215745    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:45:30.209943    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:45:40.219168    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:45:50.210840    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:45:50.210651    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:46:00.218048    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:46:10.219170    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:46:20.210178    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:46:30.219151    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:46:40.219091    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:46:50.210117    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:46:50.210228    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:47:00.211334    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:47:10.219057    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:47:20.210522    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:47:30.215755    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:47:40.209807    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:47:50.210292    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:47:50.210405    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:48:00.219705    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:48:10.211322    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:48:20.209680    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:48:30.218090    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:48:40.219049    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:48:50.210157    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:48:50.210206    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:49:00.219066    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:49:10.219430    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:49:20.209823    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:49:30.218048    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:49:40.209725    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:49:50.210088    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:49:50.210149    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:50:00.219057    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:50:10.219033    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:50:20.210104    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:50:30.219020    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:50:40.218980    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:50:50.210357    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:50:50.210439    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:51:00.219130    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:51:10.219067    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:51:20.210082    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:51:30.219309    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:51:40.219065    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:51:50.209666    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:51:50.209728    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:52:00.219024    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:52:10.219098    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:52:20.210483    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:52:30.218165    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:52:40.219092    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:52:50.210149    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:52:50.210388    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:53:00.219147    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:53:10.219108    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:53:20.210188    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:53:30.219108    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:53:40.218995    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:53:50.210179    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:53:50.210108    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:54:00.209832    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:54:10.219078    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:54:20.210095    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:54:30.219169    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:54:40.219154    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:54:50.210246    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:54:50.210332    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:55:00.219052    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:55:10.219063    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:55:20.210629    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:55:30.218063    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:55:40.219041    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:55:50.210213    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:55:50.210278    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:56:00.210274    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:56:10.209733    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:56:20.210325    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:56:30.219099    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:56:40.219133    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:56:50.210219    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:56:50.210321    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:57:00.219110    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:57:10.219016    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:57:20.210349    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:57:30.219645    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:57:40.218180    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:57:50.210077    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:57:50.210154    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:58:00.219049    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:58:10.210215    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:58:20.210515    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:58:30.219075    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:58:40.219215    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:58:50.210605    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:58:50.210703    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:59:00.218174    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:59:10.219091    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:59:20.210265    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:59:30.219216    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:59:40.219093    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 10:59:50.210249    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 10:59:50.210327    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:00:00.219066    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:00:10.219065    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:00:20.209781    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:00:30.219178    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:00:40.219340    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:00:50.210464    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:00:50.210361    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:01:00.219042    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:01:10.219036    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:01:20.210171    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:01:30.219042    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:01:40.219143    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:01:50.210569    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:01:50.210680    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:02:00.218059    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:02:10.219180    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:02:20.210121    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:02:30.209732    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:02:40.219105    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:02:50.210191    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:02:50.210306    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:03:00.219561    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:03:10.218813    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:03:20.210346    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:03:30.211217    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:03:40.219034    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:03:50.210509    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:03:50.210602    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:04:00.219194    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:04:10.219048    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:04:20.210116    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:04:30.210289    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:04:40.209857    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:04:50.210124    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:04:50.210224    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:05:00.219057    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:05:10.219050    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:05:20.210181    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:05:30.219015    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:05:40.219053    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:05:50.210241    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:05:50.210443    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:06:00.219142    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:06:10.219025    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:06:20.210239    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:06:30.219120    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:06:40.212196    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:06:50.210345    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:06:50.210415    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:07:00.219078    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:07:10.219350    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:07:20.210239    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:07:30.219053    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:07:40.219037    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:07:50.210231    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:07:50.210341    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:08:00.219078    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:08:10.219035    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:08:20.210176    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:08:30.219064    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:08:40.219065    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:08:50.209734    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:08:50.209868    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:09:00.219244    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:09:10.219070    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:09:20.210151    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:09:30.219068    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:09:40.218993    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:09:50.210208    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:09:50.210261    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:10:00.219045    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:10:10.219080    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:10:20.210281    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:10:30.219044    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:10:40.219022    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:10:50.210291    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:10:50.210220    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:11:00.209747    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:11:10.219058    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:11:20.210487    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:11:30.219116    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:11:40.219166    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:11:50.210327    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:11:50.210408    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:12:00.219016    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:12:10.219133    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:12:20.210141    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:12:30.219302    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:12:40.219046    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:12:50.210250    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:12:50.210351    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:13:00.210338    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:13:10.209825    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:13:20.210193    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:13:30.219178    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:13:40.219167    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:13:50.209782    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:13:50.209870    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:14:00.218199    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:14:10.219159    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:14:20.210175    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:14:30.213306    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:14:40.219577    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:14:50.210518    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:14:50.210603    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:15:00.218029    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:15:10.210433    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:15:20.210189    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:15:30.219432    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:15:40.216337    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:15:50.210115    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:15:50.210062    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:16:00.219051    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:16:10.219158    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:16:20.210577    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:16:30.215118    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:16:40.219062    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:16:50.210115    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:16:50.210205    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:17:00.219472    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:17:10.215487    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:17:20.209680    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:17:30.219034    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:17:40.219054    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:17:50.210231    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:17:50.210335    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:18:00.219503    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:18:10.219166    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:18:20.210182    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:18:30.219064    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:18:40.219077    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:18:50.210242    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:18:50.210407    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:19:00.219217    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:19:10.219055    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:19:20.210496    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:19:30.209821    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:19:40.219052    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:19:50.210081    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:19:50.210199    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:20:00.219456    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:20:10.219120    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:20:20.210269    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:20:30.210678    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:20:40.218028    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:20:50.210173    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:20:50.210307    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:21:00.219100    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:21:10.219134    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:21:20.210320    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:21:30.209992    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:21:40.209743    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:21:50.210467    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:21:50.210624    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:22:00.218088    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:22:10.219041    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:22:20.210133    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:22:30.219058    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:22:40.219049    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:22:50.210147    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:22:50.210253    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:23:00.219410    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:23:10.219079    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:23:20.210243    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:23:30.219067    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:23:40.210547    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:23:50.210335    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:23:50.210198    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:24:00.219095    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:24:10.225198    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:24:20.210214    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:24:30.219110    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:24:40.219141    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:24:50.210229    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:24:50.210343    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:25:00.219121    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:25:10.219082    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:25:20.210164    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:25:30.219029    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:25:40.219060    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:25:50.209742    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:25:50.209848    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:26:00.219050    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:26:10.219597    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:26:20.210385    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:26:30.219033    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:26:40.219053    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:26:50.210227    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:26:50.210333    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:27:00.214581    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:27:10.218024    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:27:20.210289    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:27:30.219049    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:27:40.219072    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:27:50.210189    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:27:50.217508    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:28:00.209710    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:28:10.213641    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:28:20.210268    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:28:30.219145    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:28:40.211466    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:28:50.210222    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:28:50.210282    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:29:00.219023    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:29:10.219199    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:29:20.210222    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:29:30.219098    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:29:40.211280    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:29:50.210220    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:29:50.210338    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:30:00.210262    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:30:10.209705    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:30:20.210306    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:30:30.219024    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:30:40.219085    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:30:50.211309    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:30:50.211714    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:31:00.218074    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:31:10.218996    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:31:20.210461    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:31:30.219378    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:31:40.219074    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:31:50.210212    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:31:50.210300    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:32:00.219151    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:32:10.210371    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:32:20.210117    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:32:30.219089    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:32:40.219121    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:32:50.210200    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:32:50.210298    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:33:00.219192    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:33:10.219260    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:33:20.210225    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:33:30.219136    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:33:40.219476    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:33:50.210178    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:33:50.210290    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:34:00.219036    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:34:10.219053    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:34:20.209781    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:34:30.219005    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:34:40.219173    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:34:50.210174    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:34:50.210123    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:35:00.219130    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:35:10.211218    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:35:20.210159    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:35:30.219047    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:35:40.219158    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:35:50.210435    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:35:50.210528    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:36:00.218205    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:36:10.219023    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:36:20.210198    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:36:30.210034    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:36:40.219006    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:36:50.210362    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:36:50.210428    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:37:00.218970    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:37:10.219089    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:37:20.210112    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:37:30.219382    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:37:40.219068    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:37:50.210111    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:37:50.210158    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:38:00.219177    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:38:10.221007    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:38:20.210281    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:38:30.210286    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:38:40.209844    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:38:50.210381    4356 watch.go:116] watchAllDir unable to walk dir `/home/zakariya/SkillSwap/dataconnect`: lstat /home/zakariya/SkillSwap/dataconnect: no such file or directory
+E0122 11:38:50.210484    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:39:00.218826    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:39:10.218201    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:39:20.210204    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+E0122 11:39:30.219005    4356 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`

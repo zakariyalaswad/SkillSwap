@@ -17,8 +17,8 @@
             </a>
         </nav>
         <div class="flex gap-3">
-            <button class="px-6 py-2.5 bg-slate-800 text-white font-semibold rounded-lg border border-slate-700 hover:bg-slate-700 transition-all duration-300">Sign In</button>
-            <button class="px-6 py-2.5 bg-linear-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5 transition-all duration-300">Sign Up</button>
+            <button (click)="login()" class="px-6 py-2.5 bg-slate-800 text-white font-semibold rounded-lg border border-slate-700 hover:bg-slate-700 transition-all duration-300">Sign In</button>
+            <button (click)="register()" class="px-6 py-2.5 bg-linear-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5 transition-all duration-300">Sign Up</button>
         </div>
     </div>
 </header>

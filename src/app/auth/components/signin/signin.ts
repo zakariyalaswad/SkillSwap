@@ -19,9 +19,9 @@ export class Signin {
   })
   async login(){
     try{
-      await this.auth.signin(this.form.value.email!,this.form.value.password!); 
+      const uid=await this.auth.signin(this.form.value.email!,this.form.value.password!); 
       console.log(this.form.value);
-      this.router.navigate(['']);
+      this.router.navigate(['home',uid]);
     }catch(error){
       console.log(error)
     

@@ -27,9 +27,12 @@ export class Signup {
   })
   async register(){
     try{
-      await this.auth.signup(this.form.value.email!,this.form.value.password!)
-      console.log(this.form.value)
-      this.router.navigate([''])
+      const uid=await this.auth.signup(this.form.value.email!,this.form.value.password!)
+      console.log("signup successfully");
+      const { password, ...formData } = this.form.value;
+      await this.auth.add({ ...formData, uid });
+      console.log('user added successfully');
+      this.router.navigate(['home',uid])
     }catch(error){
       console.log(error)
     

@@ -1,3 +1,10 @@
-<router-outlet></router-outlet>
-<app-header></app-header>
-<app-sidebar></app-sidebar>
+<app-header class="fixed w-screen"></app-header>
+<div class=" min-h-screen bg-slate-100">
+    <!-- Sidebar -->
+    <app-sidebar class="fixed top-16 h-screen w-64 z-40"></app-sidebar>
+
+    <!-- Main Content -->
+    <div class="ml-64 t-16 flex-1 min-h-screen">
+        <router-outlet></router-outlet>
+    </div>
+</div>

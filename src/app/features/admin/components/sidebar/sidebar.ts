@@ -1,21 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { LucideAngularModule, House,UserRound,HeartPlus, MessageCircle, Sparkles, UserStar, LogOut } from 'lucide-angular';
-import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { Router } from '@angular/router';
 import { AuthService } from '../../../../auth/services/auth-service';
+import { LucideAngularModule, LogOut } from 'lucide-angular';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [LucideAngularModule, RouterLink, RouterLinkActive],
+  imports: [LucideAngularModule],
   templateUrl: './sidebar.html',
 })
 export class Sidebar {
-  readonly House = House;
-  readonly UserRound=UserRound;
-  readonly HeartPlus=HeartPlus;
-  readonly MessageCircle=MessageCircle;
-  readonly Sparkles=Sparkles;
-  readonly UserStar=UserStar;
+
   readonly LogOut=LogOut;
   auth=inject(AuthService);
   router=inject(Router);

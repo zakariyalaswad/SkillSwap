@@ -14,6 +14,8 @@ export class Signup {
 
   auth=inject(AuthService)
 
+
+
   form=new FormGroup({
     firstname:new FormControl('',[Validators.required]),
     lastname:new FormControl('',[Validators.required]),
@@ -27,12 +29,9 @@ export class Signup {
   })
   async register(){
     try{
-      const uid=await this.auth.signup(this.form.value.email!,this.form.value.password!)
+      await this.auth.signup(this.form.value.email!,this.form.value.password!)
       console.log("signup successfully");
-      const { password, ...formData } = this.form.value;
-      await this.auth.add({ ...formData, uid });
-      console.log('user added successfully');
-      this.router.navigate(['home',uid])
+      this.router.navigate(['home'])
     }catch(error){
       console.log(error)
     

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { LucideAngularModule, House,UserRound,HeartPlus, MessageCircle, Sparkles, UserStar, LogOut } from 'lucide-angular';
+import { LucideAngularModule, House,UserRound,HeartPlus, MessageCircle, Sparkles, UserStar, LogOut,ClockFading } from 'lucide-angular';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from '../../../../auth/services/auth-service';
 
@@ -17,6 +17,7 @@ export class Sidebar {
   readonly Sparkles=Sparkles;
   readonly UserStar=UserStar;
   readonly LogOut=LogOut;
+  readonly ClockFading=ClockFading
   auth=inject(AuthService);
   router=inject(Router);
 

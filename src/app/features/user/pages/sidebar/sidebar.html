@@ -1,9 +1,6 @@
 <aside class="w-15 sm:w-64 bg-linear-to-b from-gray-950 to-gray-700 h-screen py-6 shadow-xl">
     <nav class="space-y-2">
-        <a routerLink="/home/profil" routerLinkActive="active" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
-            <lucide-angular [img]="UserRound" class="my-icon"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Profile</span>
-        </a>
+        
         <a routerLink="/home" routerLinkActive="active" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
             <lucide-angular [img]="House" class="my-icon"></lucide-angular>
             <span class="hidden sm:hidden md:inline">Home</span>
@@ -16,17 +13,23 @@
             <lucide-angular [img]="MessageCircle"></lucide-angular>
             <span class="hidden sm:hidden md:inline">Chat</span>
         </a>
+        <a routerLink="/home/session" routerLinkActive="active"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
+            <lucide-angular [img]="ClockFading"></lucide-angular>
+            <span class="hidden sm:hidden md:inline">Session</span>
+        </a>
         <a routerLink="/home/suggestions" routerLinkActive="active" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
             <lucide-angular [img]="UserStar"></lucide-angular>
             <span class="hidden sm:hidden md:inline">Suggestions</span>
         </a>
-        <a routerLink="/home/bestmatches" routerLinkActive="active" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
+        <a routerLink="/home/matches" routerLinkActive="active" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
             <lucide-angular [img]="Sparkles"></lucide-angular>
             <span class="hidden sm:hidden md:inline">Best Matches</span>
         </a>
-        <button (click)="logout()" class="cursor-pointer flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
-            <lucide-angular [img]="LogOut"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Logout</span>
-        </button>
+        <a routerLink="/home/setting" routerLinkActive="active"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all duration-200">
+            <lucide-angular [img]="UserRound" class="my-icon"></lucide-angular>
+            <span class="hidden sm:hidden md:inline">Setting</span>
+        </a>
     </nav>
 </aside>

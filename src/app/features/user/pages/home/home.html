@@ -1,10 +1,14 @@
-<app-header class="fixed w-screen"></app-header>
-<div class=" min-h-screen bg-slate-100">
-    <!-- Sidebar -->
-    <app-sidebar class="fixed top-16 h-screen w-64 z-40"></app-sidebar>
+<app-header class="fixed w-screen z-50"></app-header>
+<div class="min-h-screen bg-slate-100">
+    <div class="flex pt-16">
+        <!-- Sidebar -->
+        <app-sidebar class="fixed top-16 left-0 bottom-0 h-[calc(100vh-4rem)] w-64 z-40 overflow-y-auto"></app-sidebar>
 
-    <!-- Main Content -->
-    <div class="ml-64 t-16 flex-1 min-h-screen">
-        <router-outlet></router-outlet>
+        <!-- Main Content -->
+        <main class="relative z-0 flex-1 min-h-[calc(100vh-4rem)] ml-64 px-6 py-8 bg-slate-50">
+            <div class="max-w-6xl mx-auto space-y-6">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
     </div>
 </div>

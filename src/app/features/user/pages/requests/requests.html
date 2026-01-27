@@ -1,1 +1,185 @@
-<p>requests works!</p>
+<div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900">Swap Requests</h1>
+      <p class="text-gray-600 mt-2">Manage your incoming and outgoing requests</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading()" class="flex justify-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div *ngIf="!isLoading()" class="flex gap-4 mb-8 border-b border-gray-200">
+      <button
+        (click)="activeTab.set('incoming')"
+        [class.border-b-2]="activeTab() === 'incoming'"
+        [class.border-indigo-600]="activeTab() === 'incoming'"
+        [class.text-indigo-600]="activeTab() === 'incoming'"
+        [class.text-gray-600]="activeTab() !== 'incoming'"
+        class="px-4 py-3 font-medium transition hover:text-gray-900"
+      >
+        Incoming ({{ incomingRequests().length }})
+      </button>
+      <button
+        (click)="activeTab.set('outgoing')"
+        [class.border-b-2]="activeTab() === 'outgoing'"
+        [class.border-indigo-600]="activeTab() === 'outgoing'"
+        [class.text-indigo-600]="activeTab() === 'outgoing'"
+        [class.text-gray-600]="activeTab() !== 'outgoing'"
+        class="px-4 py-3 font-medium transition hover:text-gray-900"
+      >
+        Outgoing ({{ outgoingRequests().length }})
+      </button>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading() && getFilteredRequests().length === 0" class="text-center py-16">
+      <svg class="w-20 h-20 text-gray-300 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+      </svg>
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">No requests</h3>
+      <p class="text-gray-600">You haven't {{ activeTab() === 'incoming' ? 'received any' : 'sent any' }} requests yet</p>
+    </div>
+
+    <!-- Requests List -->
+    <div *ngIf="!isLoading() && getFilteredRequests().length > 0" class="space-y-4">
+      <div *ngFor="let request of getFilteredRequests()" class="bg-white rounded-lg shadow-md hover:shadow-lg transition overflow-hidden">
+        <div class="p-6">
+          <!-- Header with Status -->
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">
+                {{ activeTab() === 'incoming' ? request.senderName : request.recipientName }}
+              </h3>
+              <p class="text-sm text-gray-500 mt-1">{{ formatDate(request.createdAt) }}</p>
+            </div>
+            <span [class.bg-yellow-100]="getStatusColor(request.status) === 'yellow'"
+                  [class.bg-green-100]="getStatusColor(request.status) === 'green'"
+                  [class.bg-red-100]="getStatusColor(request.status) === 'red'"
+                  [class.bg-gray-100]="getStatusColor(request.status) === 'gray'"
+                  [class.text-yellow-800]="getStatusColor(request.status) === 'yellow'"
+                  [class.text-green-800]="getStatusColor(request.status) === 'green'"
+                  [class.text-red-800]="getStatusColor(request.status) === 'red'"
+                  [class.text-gray-800]="getStatusColor(request.status) === 'gray'"
+                  class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium">
+              {{ getStatusLabel(request.status) }}
+            </span>
+          </div>
+
+          <!-- Skills Exchange -->
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <!-- Offering -->
+            <div class="bg-blue-50 rounded-lg p-4">
+              <p class="text-sm font-medium text-gray-600 mb-2">They Offer</p>
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-900">{{ request.skillOffered.name }}</p>
+                  <p class="text-sm text-gray-600 mt-1">
+                    <span class="inline-block bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs mr-2">{{ request.skillOffered.level }}</span>
+                    <span class="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">{{ request.skillOffered.category }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Requesting -->
+            <div class="bg-purple-50 rounded-lg p-4">
+              <p class="text-sm font-medium text-gray-600 mb-2">They Request</p>
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-purple-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.712 4.33a9.027 9.027 0 011.791 1.791m-15.456 0a9.027 9.027 0 011.791-1.791m13.48 5.423a8.967 8.967 0 00-1.63-2.293m-6.364 10.787a9.049 9.049 0 01-1.791-1.791m15.456 0a9.027 9.027 0 01-1.791 1.791m-13.48-5.423a8.967 8.967 0 001.63 2.293m6.364-10.787a9.049 9.049 0 011.791 1.791"></path>
+                </svg>
+                <div>
+                  <p class="font-semibold text-gray-900">{{ request.skillRequested.name }}</p>
+                  <p class="text-sm text-gray-600 mt-1">
+                    <span class="inline-block bg-purple-200 text-purple-800 px-2 py-1 rounded text-xs mr-2">{{ request.skillRequested.level }}</span>
+                    <span class="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">{{ request.skillRequested.category }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div *ngIf="request.message" class="bg-gray-50 rounded-lg p-4 mb-6 border-l-4 border-indigo-600">
+            <p class="text-sm font-medium text-gray-600 mb-2">Message</p>
+            <p class="text-gray-900">{{ request.message }}</p>
+          </div>
+
+          <!-- Session Type & Proposed Date -->
+          <div class="grid md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <p class="text-sm font-medium text-gray-600 mb-1">Session Type</p>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                </svg>
+                <span class="text-gray-900 font-medium">{{ request.sessionType }}</span>
+              </div>
+            </div>
+            <div *ngIf="request.proposedDate">
+              <p class="text-sm font-medium text-gray-600 mb-1">Proposed Date</p>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v2H4a2 2 0 00-2 2v2h16V7a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v2H7V3a1 1 0 00-1-1zm0 5a2 2 0 002 2h8a2 2 0 002-2H6z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-900 font-medium">{{ formatDate(request.proposedDate) }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex gap-3 pt-4 border-t border-gray-200">
+            <button
+              *ngIf="activeTab() === 'incoming' && isPending(request)"
+              (click)="acceptRequest(request)"
+              class="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium"
+            >
+              Accept Request
+            </button>
+            <button
+              *ngIf="activeTab() === 'incoming' && isPending(request)"
+              (click)="rejectRequest(request)"
+              class="flex-1 px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition font-medium"
+            >
+              Reject Request
+            </button>
+            <button
+              *ngIf="activeTab() === 'incoming' && isAccepted(request)"
+              disabled
+              class="flex-1 px-4 py-2 bg-green-100 text-green-600 rounded-lg font-medium cursor-not-allowed"
+            >
+              Accepted ✓
+            </button>
+            <button
+              *ngIf="activeTab() === 'outgoing' && isPending(request)"
+              (click)="cancelRequest(request)"
+              class="flex-1 px-4 py-2 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition font-medium"
+            >
+              Cancel Request
+            </button>
+            <button
+              *ngIf="activeTab() === 'outgoing' && !isPending(request)"
+              disabled
+              class="flex-1 px-4 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium cursor-not-allowed"
+            >
+              {{ getStatusLabel(request.status) }}
+            </button>
+            <button
+              *ngIf="isAccepted(request)"
+              class="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-medium"
+            >
+              Schedule Session
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

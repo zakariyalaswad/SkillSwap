@@ -1,0 +1,210 @@
+<div class="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 p-4">
+  <div class="max-w-2xl mx-auto py-8">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">Find Your Perfect Match</h1>
+      <p class="text-gray-600">Swipe through users and find people with complementary skills</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading()" class="flex justify-center items-center py-16">
+      <div class="text-center">
+        <svg class="animate-spin h-12 w-12 text-indigo-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p class="text-gray-600 font-semibold">Loading matches...</p>
+      </div>
+    </div>
+
+    <!-- No More Matches -->
+    <div *ngIf="noMoreMatches() && !isLoading()" class="bg-white rounded-2xl shadow-lg p-12 text-center">
+      <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m2-1l-2-1m2 1v2.5"/>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">No More Matches</h2>
+      <p class="text-gray-600 mb-6">You've viewed all available matches. Come back later for new matches!</p>
+      <button (click)="reloadMatches()" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+        Reload Matches
+      </button>
+    </div>
+
+    <!-- Match Card -->
+    <div *ngIf="currentMatch && !isLoading() && !noMoreMatches()" class="space-y-6">
+      <!-- Card -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <!-- Header with photo -->
+        <div class="relative h-96 bg-linear-to-br from-indigo-400 to-blue-400 flex items-center justify-center">
+          <div *ngIf="!currentMatch.photoUrl" class="text-center">
+            <svg class="w-24 h-24 text-white/30 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+          <img *ngIf="currentMatch.photoUrl" [src]="currentMatch.photoUrl" alt="{{ currentMatch.name }}" class="w-full h-full object-cover">
+          
+          <!-- Rating Badge -->
+          <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full flex items-center space-x-1 shadow-lg">
+            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            <span [class]="getRatingColor(currentMatch.averageRating)" class="font-bold">{{ currentMatch.averageRating || 'N/A' }}</span>
+          </div>
+        </div>
+
+        <!-- User Info -->
+        <div class="p-6 space-y-4">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900">{{ currentMatch.name }}</h2>
+            <p *ngIf="currentMatch.location" class="text-gray-600 flex items-center mt-1">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              </svg>
+              {{ currentMatch.location }}
+            </p>
+          </div>
+
+          <!-- Bio -->
+          <div *ngIf="currentMatch.bio">
+            <p class="text-gray-700 italic">{{ currentMatch.bio }}</p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4 py-4 border-t border-b border-gray-200">
+            <div class="text-center">
+              <p class="text-2xl font-bold text-indigo-600">{{ currentMatch.totalSwapsCompleted }}</p>
+              <p class="text-sm text-gray-600">Swaps Completed</p>
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold text-blue-600">{{ currentMatch.totalSkillsTaught }}</p>
+              <p class="text-sm text-gray-600">Skills Taught</p>
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold text-green-600">{{ currentMatch.totalSkillsLearned }}</p>
+              <p class="text-sm text-gray-600">Skills Learned</p>
+            </div>
+          </div>
+
+          <!-- Common Skills -->
+          <div *ngIf="commonTeachingSkills.length > 0">
+            <p class="font-semibold text-gray-900 mb-2">Skills They Want to Learn (You Can Teach)</p>
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let skill of commonTeachingSkills" class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium">
+                {{ skill.name }}
+                <span class="ml-1 text-xs bg-indigo-700 text-white px-2 py-0.5 rounded-full">{{ skill.level }}</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Skills We Can Learn -->
+          <div *ngIf="skillsCanLearnFromMatch.length > 0">
+            <p class="font-semibold text-gray-900 mb-2">Skills They Can Teach (You Want to Learn)</p>
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let skill of skillsCanLearnFromMatch" class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
+                {{ skill.name }}
+                <span class="ml-1 text-xs bg-green-700 text-white px-2 py-0.5 rounded-full">{{ skill.level }}</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Session Preferences -->
+          <div class="flex items-center space-x-4 pt-4 border-t border-gray-200">
+            <div *ngIf="currentMatch.preferOnline" class="flex items-center text-gray-600">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+              </svg>
+              <span class="text-sm">Online</span>
+            </div>
+            <div *ngIf="currentMatch.preferOffline" class="flex items-center text-gray-600">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sm">In-Person</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-4 justify-center">
+        <button (click)="skip()" class="flex-1 px-6 py-4 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition flex items-center justify-center">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+          Skip
+        </button>
+        
+        <button (click)="openSwapRequestModal()" 
+                [disabled]="commonTeachingSkills.length === 0 || skillsCanLearnFromMatch.length === 0"
+                class="flex-1 px-6 py-4 bg-linear-to-r from-indigo-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+          </svg>
+          Send Swap Request
+        </button>
+      </div>
+
+      <!-- Progress -->
+      <div class="text-center text-gray-600 text-sm">
+        Match {{ currentMatchIndex() + 1 }} of {{ matches().length }}
+      </div>
+    </div>
+
+    <!-- Swap Request Modal -->
+    <div *ngIf="showSwapRequestModal()" class="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+      <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full space-y-6">
+        <div>
+          <h3 class="text-2xl font-bold text-gray-900">Send Swap Request</h3>
+          <p class="text-gray-600 mt-1">Propose a skill exchange with {{ currentMatch?.name }}</p>
+        </div>
+
+        <!-- Selected Skills Preview -->
+        <div class="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div>
+            <p class="text-sm font-semibold text-gray-700 mb-1">You'll teach</p>
+            <p class="text-indigo-600 font-semibold">{{ commonTeachingSkills[0]?.name }} ({{ commonTeachingSkills[0]?.level }})</p>
+          </div>
+          <div class="border-t border-gray-200 pt-3">
+            <p class="text-sm font-semibold text-gray-700 mb-1">You'll learn</p>
+            <p class="text-green-600 font-semibold">{{ skillsCanLearnFromMatch[0]?.name }} ({{ skillsCanLearnFromMatch[0]?.level }})</p>
+          </div>
+        </div>
+
+        <!-- Session Type Selection -->
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-3">Preferred Session Type</p>
+          <div class="space-y-2">
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:border-indigo-600 cursor-pointer transition">
+              <input type="radio" value="Online" (change)="setSessionType($event.target.value)" [checked]="selectedSessionType() === 'Online'" class="w-4 h-4 text-indigo-600">
+              <span class="ml-3 text-gray-700">Online</span>
+            </label>
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:border-indigo-600 cursor-pointer transition">
+              <input type="radio" value="Offline" (change)="setSessionType($event.target.value)" [checked]="selectedSessionType() === 'Offline'" class="w-4 h-4 text-indigo-600">
+              <span class="ml-3 text-gray-700">In-Person</span>
+            </label>
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:border-indigo-600 cursor-pointer transition">
+              <input type="radio" value="Hybrid" (change)="setSessionType($event.target.value)" [checked]="selectedSessionType() === 'Hybrid'" class="w-4 h-4 text-indigo-600">
+              <span class="ml-3 text-gray-700">Hybrid</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Message (Optional)</label>
+          <textarea [value]="swapMessage()" #messageTextarea (change)="setSwapMessage(messageTextarea.value)" placeholder="Hi! I'd love to exchange skills with you..."
+                    rows="3" class="w-full text-gray-700 px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"></textarea>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-3 pt-4">
+          <button (click)="closeSwapRequestModal()" class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition">
+            Cancel
+          </button>
+          <button (click)="sendSwapRequest()" class="flex-1 px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+            Send Request
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

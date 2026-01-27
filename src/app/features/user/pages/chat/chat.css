@@ -1,0 +1,47 @@
+/* Chat Component Styles */
+
+/* Message animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bg-indigo-50 {
+  background-color: #eef2ff;
+}
+
+.bg-indigo-600 {
+  background-color: #4f46e5;
+}
+
+.text-indigo-600 {
+  color: #4f46e5;
+}
+
+.text-indigo-100 {
+  color: #e0e7ff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

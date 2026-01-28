@@ -5,8 +5,11 @@
 
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { SwapService } from '../../../../shared/services/swap.service';
 import { AuthService } from '../../../../auth/services/auth.service';
+import { ChatService } from '../../../../shared/services/chat.service';
+import { UserService } from '../../../../shared/services/user.service';
 import { SwapRequest, SwapRequestStatus } from '../../../../models';
 import Swal from 'sweetalert2';
 
@@ -20,6 +23,9 @@ import Swal from 'sweetalert2';
 export class Requests implements OnInit {
   private swapService = inject(SwapService);
   private authService = inject(AuthService);
+  private chatService = inject(ChatService);
+  private userService = inject(UserService);
+  private router = inject(Router);
 
   // State
   protected incomingRequests = signal<SwapRequest[]>([]);
@@ -93,10 +99,27 @@ export class Requests implements OnInit {
     try {
       this.isLoading.set(true);
       console.log('Accepting request with ID:', request.id, 'Full request:', request);
+      
+      // Update swap request status
       await this.swapService.updateSwapRequestStatus(
         request.id,
         SwapRequestStatus.ACCEPTED
       );
+
+      // Get current user info
+      const currentUser = this.authService.getCurrentUser();
+      if (currentUser?.id) {
+        // Create conversation between sender and recipient
+        const conversation = await this.chatService.getOrCreateConversation(
+          request.senderId,
+          request.recipientId,
+          {
+            name1: request.senderName,
+            name2: request.recipientName
+          }
+        );
+        console.log('Conversation created:', conversation.id);
+      }
       
       Swal.fire('Success', 'Swap request accepted! You can now schedule a session.', 'success');
       this.loadRequests();
@@ -223,5 +246,47 @@ export class Requests implements OnInit {
    */
   isAccepted(request: SwapRequest): boolean {
     return request.status === SwapRequestStatus.ACCEPTED;
+  }
+
+  /**
+   * Schedule a session for accepted request
+   */
+  async scheduleSession(request: SwapRequest): Promise<void> {
+    try {
+      this.isLoading.set(true);
+
+      // Get current user
+      const currentUser = this.authService.getCurrentUser();
+      if (!currentUser?.id) {
+        Swal.fire('Error', 'User not authenticated', 'error');
+        return;
+      }
+
+      // Get the other user's data (sender or recipient depending on which request)
+      const otherUserId = currentUser.id === request.senderId ? request.recipientId : request.senderId;
+      const otherUserName = currentUser.id === request.senderId ? request.recipientName : request.senderName;
+      
+      // Create or get conversation between the two users
+      const conversation = await this.chatService.getOrCreateConversation(
+        currentUser.id,
+        otherUserId,
+        {
+          name1: currentUser.name,
+          name2: otherUserName
+        }
+      );
+
+      Swal.fire('Success', 'Conversation created! You can now chat to schedule a session.', 'success');
+      
+      // Navigate to chat page with the conversation
+      this.router.navigate(['/home/chat'], { 
+        queryParams: { conversationId: conversation.id } 
+      });
+    } catch (error) {
+      console.error('Error scheduling session:', error);
+      Swal.fire('Error', 'Failed to start conversation', 'error');
+    } finally {
+      this.isLoading.set(false);
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, signal, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '../../../../shared/services/chat.service';
 import { AuthService } from '../../../../auth/services/auth.service';
 import { ChatConversation, Message } from '../../../../models';
@@ -17,6 +18,7 @@ import Swal from 'sweetalert2';
 export class Chat implements OnInit, OnDestroy {
   private chatService = inject(ChatService);
   private authService = inject(AuthService);
+  private activatedRoute = inject(ActivatedRoute);
 
   // State
   protected conversations = signal<ChatConversation[]>([]);
@@ -36,7 +38,31 @@ export class Chat implements OnInit, OnDestroy {
     }
     
     this.currentUserId.set(user.id);
-    this.loadConversations();
+    
+    // Load conversations first, then check for query params
+    this.loadConversations().then(() => {
+      // Check if there's a conversation ID in query params
+      this.activatedRoute.queryParams.subscribe(params => {
+        const conversationId = params['conversationId'];
+        console.log('Query param conversationId:', conversationId);
+        if (conversationId) {
+          // Find and select the conversation with this ID
+          const targetConversation = this.conversations().find(c => c.id === conversationId);
+          console.log('Target conversation found:', targetConversation);
+          if (targetConversation) {
+            this.selectConversation(targetConversation);
+          } else {
+            // If not found in current list, wait a bit and try again
+            setTimeout(() => {
+              const retryConversation = this.conversations().find(c => c.id === conversationId);
+              if (retryConversation) {
+                this.selectConversation(retryConversation);
+              }
+            }, 500);
+          }
+        }
+      });
+    });
   }
 
   ngOnDestroy(): void {
@@ -93,28 +119,52 @@ export class Chat implements OnInit, OnDestroy {
    */
   async sendMessage(): Promise<void> {
     const content = this.newMessage().trim();
-    if (!content || !this.selectedConversation()) return;
+    if (!content) {
+      console.warn('Cannot send message: empty content');
+      return;
+    }
+
+    if (!this.selectedConversation()) {
+      console.error('Cannot send message: no conversation selected');
+      Swal.fire('Error', 'Please select a conversation first', 'error');
+      return;
+    }
+
+    if (!this.selectedConversation()?.id) {
+      console.error('Cannot send message: conversation has no ID', this.selectedConversation());
+      Swal.fire('Error', 'Conversation ID is missing', 'error');
+      return;
+    }
 
     const user = this.authService.getCurrentUser();
-    if (!user) return;
+    if (!user) {
+      console.error('Cannot send message: user not authenticated');
+      Swal.fire('Error', 'User not authenticated', 'error');
+      return;
+    }
 
     try {
+      const now = new Date();
+      const conversationId = this.selectedConversation()!.id;
+      
       const message: Message = {
         id: '',
-        conversationId: this.selectedConversation()!.id,
+        conversationId,
         senderId: user.id,
         senderName: user.name,
         content,
         isRead: false,
-        createdAt: new Date()
+        createdAt: now
       };
 
-      await this.chatService.sendMessage(this.selectedConversation()!.id, message);
+      console.log('Sending message to conversation:', conversationId, 'Message:', message);
+      const messageId = await this.chatService.sendMessage(conversationId, message);
+      console.log('Message sent successfully with ID:', messageId);
       this.newMessage.set('');
       this.scrollToBottom();
     } catch (error) {
       console.error('Error sending message:', error);
-      Swal.fire('Error', 'Failed to send message', 'error');
+      Swal.fire('Error', 'Failed to send message: ' + (error instanceof Error ? error.message : 'Unknown error'), 'error');
     }
   }
 
@@ -138,26 +188,39 @@ export class Chat implements OnInit, OnDestroy {
   /**
    * Format timestamp
    */
-  formatTime(date: Date): string {
+  formatTime(date: Date | any): string {
     if (!date) return '';
-    const d = date instanceof Date ? date : new Date(date);
-    return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    try {
+      const d = date instanceof Date ? date : new Date(date);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    } catch (error) {
+      console.error('Error formatting time:', error);
+      return '';
+    }
   }
 
   /**
    * Format date for conversation list
    */
-  formatDate(date?: Date): string {
+  formatDate(date?: Date | any): string {
     if (!date) return '';
-    const d = date instanceof Date ? date : new Date(date);
-    const now = new Date();
-    const diff = now.getTime() - d.getTime();
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    
-    if (days === 0) return this.formatTime(d);
-    if (days === 1) return 'Yesterday';
-    if (days < 7) return d.toLocaleDateString('en-US', { weekday: 'short' });
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    try {
+      const d = date instanceof Date ? date : new Date(date);
+      if (isNaN(d.getTime())) return '';
+      
+      const now = new Date();
+      const diff = now.getTime() - d.getTime();
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      
+      if (days === 0) return this.formatTime(d);
+      if (days === 1) return 'Yesterday';
+      if (days < 7) return d.toLocaleDateString('en-US', { weekday: 'short' });
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return '';
+    }
   }
 
   /**

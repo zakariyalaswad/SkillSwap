@@ -173,6 +173,7 @@
             </button>
             <button
               *ngIf="isAccepted(request)"
+              (click)="scheduleSession(request)"
               class="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-medium"
             >
               Schedule Session

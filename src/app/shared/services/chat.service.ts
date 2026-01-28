@@ -29,17 +29,22 @@ export class ChatService {
       const snapshot = await getDocs(q);
       
       const existingConversation = snapshot.docs.find(doc => {
-        const conv = doc.data() as ChatConversation;
-        return conv.participantIds.includes(userId2);
+        const conv = doc.data();
+        return conv['participantIds']?.includes(userId2);
       });
       
       if (existingConversation) {
-        return existingConversation.data() as ChatConversation;
+        const data = existingConversation.data();
+        return {
+          ...data,
+          id: existingConversation.id,
+          createdAt: data['createdAt']?.toDate?.() || data['createdAt'],
+          updatedAt: data['updatedAt']?.toDate?.() || data['updatedAt']
+        } as ChatConversation;
       }
       
       // Create new conversation
-      const newConversation: ChatConversation = {
-        id: '', // Will be set by Firestore
+      const newConversation = {
         participantIds: [userId1, userId2],
         participantNames: [names.name1, names.name2],
         unreadBy: [userId1, userId2],
@@ -49,10 +54,16 @@ export class ChatService {
       
       const docRef = await addDoc(conversationRef, newConversation);
       
+      // Update the document with the ID
+      const conversationDocRef = doc(this.firestore, 'conversations', docRef.id);
+      await updateDoc(conversationDocRef, {
+        id: docRef.id
+      });
+      
       return {
         ...newConversation,
         id: docRef.id
-      };
+      } as ChatConversation;
     } catch (error) {
       console.error('Error creating conversation:', error);
       throw error;
@@ -71,7 +82,15 @@ export class ChatService {
       );
       
       const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => doc.data() as ChatConversation);
+      return snapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          ...data,
+          id: doc.id,
+          createdAt: data['createdAt']?.toDate?.() || data['createdAt'],
+          updatedAt: data['updatedAt']?.toDate?.() || data['updatedAt']
+        } as ChatConversation;
+      });
     } catch (error) {
       console.error('Error fetching conversations:', error);
       throw error;
@@ -84,7 +103,11 @@ export class ChatService {
   async sendMessage(conversationId: string, message: Message): Promise<string> {
     try {
       const messagesRef = collection(this.firestore, `conversations/${conversationId}/messages`);
-      const docRef = await addDoc(messagesRef, message);
+      
+      // Prepare message without id field (Firestore will generate it)
+      const { id, ...messageToSend } = message;
+      
+      const docRef = await addDoc(messagesRef, messageToSend);
       
       // Update conversation's last message
       const conversationRef = doc(this.firestore, 'conversations', conversationId);
@@ -115,7 +138,15 @@ export class ChatService {
       
       const snapshot = await getDocs(q);
       return snapshot.docs
-        .map(doc => doc.data() as Message)
+        .map(doc => {
+          const data = doc.data();
+          return {
+            ...data,
+            id: doc.id,
+            createdAt: data['createdAt']?.toDate?.() || new Date(data['createdAt']),
+            editedAt: data['editedAt']?.toDate?.() || data['editedAt']
+          } as Message;
+        })
         .reverse(); // Return in ascending order
     } catch (error) {
       console.error('Error fetching messages:', error);
@@ -136,7 +167,15 @@ export class ChatService {
       );
       
       const unsubscribe = onSnapshot(q, snapshot => {
-        const messages = snapshot.docs.map(doc => doc.data() as Message);
+        const messages = snapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            ...data,
+            id: doc.id,
+            createdAt: data['createdAt']?.toDate?.() || new Date(data['createdAt']),
+            editedAt: data['editedAt']?.toDate?.() || data['editedAt']
+          } as Message;
+        });
         observer.next(messages);
       }, error => {
         observer.error(error);

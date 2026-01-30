@@ -7,7 +7,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth,getAuth} from "@angular/fire/auth"
 import {provideFirestore,getFirestore} from "@angular/fire/firestore"
-import {firebaseConfig} from './envirements/envirement'
+import {firebaseConfig} from './envirements/envirement.prod'
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),

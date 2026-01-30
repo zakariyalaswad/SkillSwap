@@ -1,0 +1,6 @@
+[package]
+name = "swappz"
+version = "1.0.0"
+
+[app]
+kind = "docker"

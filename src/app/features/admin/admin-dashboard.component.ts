@@ -5,21 +5,31 @@
 
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
 import { AuthService } from '../../auth/services/auth.service';
+import { SwapService } from '../../shared/services/swap.service';
 import { User } from '../../models';
 import Swal from 'sweetalert2';
+import { Firestore, collection, getDocs, query, where, Timestamp } from '@angular/fire/firestore';
+import { LucideAngularModule, LogOut } from 'lucide-angular';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './admin-dashboard.html',
   styleUrls: ['./admin-dashboard.css']
 })
 export class AdminDashboardComponent implements OnInit {
   private userService = inject(UserService);
   private authService = inject(AuthService);
+  private swapService = inject(SwapService);
+  private firestore = inject(Firestore);
+  private router = inject(Router);
+  
+  // Lucide icons
+  protected readonly LogOut = LogOut;
 
   // State
   protected users = signal<User[]>([]);
@@ -31,6 +41,13 @@ export class AdminDashboardComponent implements OnInit {
   protected activeTab = signal<'overview' | 'users' | 'banned' | 'reports'>('overview');
   protected searchQuery = signal('');
   protected filteredUsers = signal<User[]>([]);
+  
+  // Platform statistics
+  protected averageRating = signal(0);
+  protected messagesToday = signal(0);
+  protected newUsersToday = signal(0);
+  protected completedSwapsToday = signal(0);
+  protected newMatchesToday = signal(0);
 
   ngOnInit(): void {
     try {
@@ -53,11 +70,11 @@ export class AdminDashboardComponent implements OnInit {
   async loadAdminData(): Promise<void> {
     this.isLoading.set(true);
     try {
-      const allUsers = await this.userService.getAllActiveUsers();
+      const allUsers = await this.userService.getAllUsers();
       this.users.set(allUsers);
       this.filteredUsers.set(allUsers);
 
-      // Calculate statistics
+      // Calculate user statistics
       const banned = allUsers.filter(u => u.isBanned);
       this.bannedUsers.set(banned);
 
@@ -67,11 +84,120 @@ export class AdminDashboardComponent implements OnInit {
       // Calculate total swaps
       const totalSwaps = allUsers.reduce((sum, u) => sum + u.totalSwapsCompleted, 0);
       this.totalSwaps.set(Math.floor(totalSwaps / 2)); // Divide by 2 since each swap involves 2 users
+      
+      // Calculate average rating
+      const usersWithRatings = allUsers.filter(u => u.totalReviews > 0);
+      if (usersWithRatings.length > 0) {
+        const avgRating = usersWithRatings.reduce((sum, u) => sum + u.averageRating, 0) / usersWithRatings.length;
+        this.averageRating.set(avgRating);
+      }
+      
+      // Calculate users joined today
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const newToday = allUsers.filter(u => {
+        const createdAt = this.convertToDate(u.createdAt);
+        return createdAt && createdAt >= today;
+      });
+      this.newUsersToday.set(newToday.length);
+      
+      // Load platform statistics
+      await Promise.all([
+        this.loadMessagesToday(),
+        this.loadSwapsToday(),
+        this.loadMatchesToday()
+      ]);
     } catch (error) {
       console.error('Error loading admin data:', error);
       Swal.fire('Error', 'Failed to load admin data', 'error');
     } finally {
       this.isLoading.set(false);
+    }
+  }
+  
+  /**
+   * Load messages sent today
+   */
+  private async loadMessagesToday(): Promise<void> {
+    try {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const todayTimestamp = Timestamp.fromDate(today);
+      
+      const conversationsRef = collection(this.firestore, 'conversations');
+      const conversationsSnapshot = await getDocs(conversationsRef);
+      
+      let messageCount = 0;
+      for (const convDoc of conversationsSnapshot.docs) {
+        const messagesRef = collection(this.firestore, `conversations/${convDoc.id}/messages`);
+        const q = query(messagesRef, where('timestamp', '>=', todayTimestamp));
+        const messagesSnapshot = await getDocs(q);
+        messageCount += messagesSnapshot.size;
+      }
+      
+      this.messagesToday.set(messageCount);
+    } catch (error) {
+      console.error('Error loading messages today:', error);
+    }
+  }
+  
+  /**
+   * Load swaps completed today
+   */
+  private async loadSwapsToday(): Promise<void> {
+    try {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const todayTimestamp = Timestamp.fromDate(today);
+      
+      const swapsRef = collection(this.firestore, 'swap_requests');
+      const q = query(
+        swapsRef, 
+        where('status', '==', 'completed'),
+        where('completedAt', '>=', todayTimestamp)
+      );
+      const snapshot = await getDocs(q);
+      this.completedSwapsToday.set(snapshot.size);
+    } catch (error) {
+      console.error('Error loading swaps today:', error);
+    }
+  }
+  
+  /**
+   * Load new matches today
+   */
+  private async loadMatchesToday(): Promise<void> {
+    try {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const todayTimestamp = Timestamp.fromDate(today);
+      
+      const swapsRef = collection(this.firestore, 'swap_requests');
+      const q = query(
+        swapsRef,
+        where('createdAt', '>=', todayTimestamp)
+      );
+      const snapshot = await getDocs(q);
+      this.newMatchesToday.set(snapshot.size);
+    } catch (error) {
+      console.error('Error loading matches today:', error);
+    }
+  }
+  
+  /**
+   * Convert any date format to Date object
+   */
+  private convertToDate(date: any): Date | null {
+    if (!date) return null;
+    
+    if (date?.toDate && typeof date.toDate === 'function') {
+      return date.toDate();
+    } else if (date?.seconds) {
+      return new Date(date.seconds * 1000);
+    } else if (date instanceof Date) {
+      return date;
+    } else {
+      return new Date(date);
     }
   }
 
@@ -96,13 +222,10 @@ export class AdminDashboardComponent implements OnInit {
     if (!result.isConfirmed) return;
 
     try {
-      const updatedUser: User = {
-        ...user,
+      await this.userService.updateUserProfile(user.id, {
         isBanned: true,
         bannedReason: result.value
-      };
-
-      await this.userService.updateUserProfile(user.id, updatedUser);
+      });
 
       Swal.fire('Success', 'User has been banned', 'success');
       this.loadAdminData();
@@ -127,13 +250,10 @@ export class AdminDashboardComponent implements OnInit {
     if (!result.isConfirmed) return;
 
     try {
-      const updatedUser: User = {
-        ...user,
+      await this.userService.updateUserProfile(user.id, {
         isBanned: false,
-        bannedReason: undefined
-      };
-
-      await this.userService.updateUserProfile(user.id, updatedUser);
+        bannedReason: ''
+      });
 
       Swal.fire('Success', 'User has been unbanned', 'success');
       this.loadAdminData();
@@ -205,9 +325,24 @@ export class AdminDashboardComponent implements OnInit {
   /**
    * Format date
    */
-  formatDate(date: Date): string {
+  formatDate(date: any): string {
     if (!date) return '';
-    const d = date instanceof Date ? date : new Date(date);
+    
+    // Handle Firestore Timestamp
+    let d: Date;
+    if (date?.toDate && typeof date.toDate === 'function') {
+      d = date.toDate();
+    } else if (date?.seconds) {
+      d = new Date(date.seconds * 1000);
+    } else if (date instanceof Date) {
+      d = date;
+    } else {
+      d = new Date(date);
+    }
+    
+    // Check if date is valid
+    if (isNaN(d.getTime())) return 'N/A';
+    
     return d.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
@@ -231,5 +366,29 @@ export class AdminDashboardComponent implements OnInit {
     if (score >= 3) return 'yellow';
     if (score >= 2) return 'orange';
     return 'red';
+  }
+  
+  /**
+   * Logout
+   */
+  async logout(): Promise<void> {
+    const result = await Swal.fire({
+      title: 'Logout?',
+      text: 'Are you sure you want to logout?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Logout',
+      cancelButtonText: 'Cancel'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await this.authService.signOut();
+        this.router.navigate(['/signin']);
+      } catch (error) {
+        console.error('Error logging out:', error);
+        Swal.fire('Error', 'Failed to logout', 'error');
+      }
+    }
   }
 }

@@ -69,9 +69,6 @@ export interface Swap {
   skillBeingTaught: Skill;
   skillBeingLearned: Skill;
   
-  // Session details
-  session: Session;
-  
   // Status
   status: SwapStatus;
   
@@ -82,31 +79,6 @@ export interface Swap {
   // Timeline
   createdAt: Date;
   startedAt?: Date;
-  completedAt?: Date;
-}
-
-export interface Session {
-  id: string;
-  swapId?: string;
-  
-  // Participants
-  participantIds: string[];
-  
-  // Details
-  skillTopic: string;
-  sessionType: SessionType;
-  description?: string;
-  
-  // Schedule
-  scheduledAt: Date;
-  duration: number; // in minutes
-  
-  // Meeting info
-  meetingLink?: string;
-  meetingType: MeetingType;
-  
-  // Status
-  status: SessionStatus;
   completedAt?: Date;
 }
 
@@ -146,13 +118,6 @@ export enum SwapStatus {
   PENDING = 'Pending',
   CONFIRMED = 'Confirmed',
   IN_PROGRESS = 'In Progress',
-  COMPLETED = 'Completed',
-  CANCELLED = 'Cancelled'
-}
-
-export enum SessionStatus {
-  SCHEDULED = 'Scheduled',
-  ONGOING = 'Ongoing',
   COMPLETED = 'Completed',
   CANCELLED = 'Cancelled'
 }

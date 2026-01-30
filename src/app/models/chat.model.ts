@@ -64,6 +64,7 @@ export interface Notification {
   // Related data
   relatedItemId?: string;
   relatedUserId?: string;
+  link?: string; // Navigation link
   
   // Status
   isRead: boolean;

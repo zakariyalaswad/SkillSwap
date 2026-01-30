@@ -35,7 +35,7 @@ export const routes: Routes = [
                 loadComponent: () => import('./features/user/pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
             },
             {
-                path: 'profil',
+                path: 'profil/:id',
                 loadComponent: () => import('./features/user/pages/profil/profil').then(m => m.Profil),
             },
             {
@@ -48,6 +48,10 @@ export const routes: Routes = [
 
             },
             {
+                path:'explore',
+                loadComponent:()=>import('./features/user/pages/explore/explore').then(m=>m.Explore)
+            },
+            {
                 path:'matches',
                 loadComponent:()=>import('./features/user/pages/matching/matching.component').then(m=>m.MatchingComponent)
             },
@@ -55,10 +59,6 @@ export const routes: Routes = [
                 path:'chat',
                 loadComponent:()=>import('./features/user/pages/chat/chat').then(m=>m.Chat)
 
-            },
-            {
-                path:'session',
-                loadComponent:()=>import('./features/user/pages/sessions/sessions.component').then(m=>m.SessionsComponent)
             },
             {
                 path:'setting',

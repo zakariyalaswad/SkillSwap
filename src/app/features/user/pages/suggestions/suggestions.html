@@ -1,1 +1,199 @@
-<p>suggestions works!</p>
+<div class="min-h-screen bg-gray-50 pb-20">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <h1 class="text-2xl font-bold text-gray-900 mb-2">Suggestions</h1>
+      <p class="text-gray-600">People who can teach what you want to learn</p>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading()" class="max-w-md mx-auto px-4 py-16">
+    <div class="flex justify-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+    </div>
+  </div>
+
+  <!-- Card Stack Container -->
+  <div *ngIf="!isLoading()" class="max-w-md mx-auto px-4 py-8">
+    <!-- Empty State -->
+    <div *ngIf="suggestions().length === 0" class="bg-white rounded-xl shadow p-10 text-center">
+      <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m2-1l-2-1m2 1v2.5"/>
+      </svg>
+      <h2 class="text-xl font-semibold text-gray-900">No suggestions yet</h2>
+      <p class="text-gray-600 mt-1">Try adding more skills you want to learn.</p>
+    </div>
+
+    <!-- All cards swiped -->
+    <div *ngIf="suggestions().length > 0 && currentCardIndex() >= suggestions().length" class="text-center py-16">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-4">
+        <span class="text-3xl">🎉</span>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">You've seen all suggestions!</h3>
+      <p class="text-gray-600 mb-6">Check back later for more matches.</p>
+      <button (click)="resetCards()" class="px-6 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">Review Again</button>
+    </div>
+
+    <!-- Card Stack (Tinder Style) -->
+    <div *ngIf="suggestions().length > 0 && currentCardIndex() < suggestions().length" class="relative h-[600px]">
+      <!-- Background Cards (for depth effect) -->
+      <div *ngFor="let user of getNextCards(); let i = index" 
+           class="absolute inset-0 bg-white rounded-2xl shadow-2xl"
+           [style.transform]="'scale(' + (1 - (i + 1) * 0.05) + ') translateY(' + ((i + 1) * 10) + 'px)'"
+           [style.z-index]="10 - i"
+           [style.opacity]="1 - (i + 1) * 0.3">
+      </div>
+
+      <!-- Current Card -->
+      <div *ngIf="getCurrentCard() as u" 
+           class="absolute inset-0 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300"
+           [class.swipe-left]="swipeDirection() === 'left'"
+           [class.swipe-right]="swipeDirection() === 'right'"
+           [style.z-index]="20">
+        
+        <!-- Swipe Indicators -->
+        <div class="absolute top-8 left-8 z-30 transform rotate-[-20deg] transition-opacity duration-200"
+             [class.opacity-0]="swipeDirection() !== 'right'"
+             [class.opacity-100]="swipeDirection() === 'right'">
+          <div class="px-6 py-3 border-4 border-green-500 rounded-xl">
+            <span class="text-3xl font-bold text-green-500">LIKE</span>
+          </div>
+        </div>
+        
+        <div class="absolute top-8 right-8 z-30 transform rotate-[20deg] transition-opacity duration-200"
+             [class.opacity-0]="swipeDirection() !== 'left'"
+             [class.opacity-100]="swipeDirection() === 'left'">
+          <div class="px-6 py-3 border-4 border-red-500 rounded-xl">
+            <span class="text-3xl font-bold text-red-500">PASS</span>
+          </div>
+        </div>
+
+        <!-- Card Content -->
+        <div class="h-full flex flex-col">
+          <!-- Image Section -->
+          <div class="h-72 relative bg-gradient-to-br from-indigo-400 to-blue-400">
+            <img *ngIf="u.photoUrl" [src]="u.photoUrl" [alt]="u.name" class="w-full h-full object-cover" />
+            <div *ngIf="!u.photoUrl" class="w-full h-full flex items-center justify-center">
+              <div class="text-center text-white">
+                <svg class="w-16 h-16 text-white/40 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                <div class="text-2xl font-bold">{{ u.name }}</div>
+              </div>
+            </div>
+            
+            <!-- Rating Badge -->
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg">
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <span class="text-sm font-semibold text-gray-800">{{ u.averageRating || 'N/A' }}</span>
+            </div>
+          </div>
+
+          <!-- Info Section (Scrollable) -->
+          <div class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Name & Location -->
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ u.name }}</h2>
+              <p *ngIf="u.location" class="text-gray-600 flex items-center">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                </svg>
+                {{ u.location }}
+              </p>
+            </div>
+
+            <!-- Bio -->
+            <p *ngIf="u.bio" class="text-gray-700">{{ u.bio }}</p>
+
+            <!-- Session Preferences -->
+            <div class="flex items-center gap-4 pt-3 border-t border-gray-200">
+              <div *ngIf="u.preferOnline" class="flex items-center text-gray-600">
+                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                </svg>
+                <span class="text-sm">Online</span>
+              </div>
+              <div *ngIf="u.preferOffline" class="flex items-center text-gray-600">
+                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-sm">In-Person</span>
+              </div>
+            </div>
+
+            <!-- Matching skills they can teach -->
+            <div>
+              <p class="text-sm font-semibold text-gray-800 mb-2">They can teach (you want)</p>
+              <div class="flex flex-wrap gap-2">
+                <span *ngFor="let s of getMatchingTeachSkills(u)" class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
+                  {{ s.name }}
+                  <span class="ml-1 text-[10px] bg-green-700 text-white px-2 py-0.5 rounded-full">{{ s.level }}</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- All skills they teach -->
+            <div>
+              <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">All Teaching Skills</p>
+              <div class="flex flex-wrap gap-2">
+                <span *ngFor="let skill of u.skillsITeach" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                  {{ skill.name }} · {{ skill.level }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div *ngIf="suggestions().length > 0 && currentCardIndex() < suggestions().length" class="flex gap-4 mt-8">
+      <button (click)="swipeLeft()" [disabled]="isAnimating()" class="flex-1 px-6 py-4 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+        Skip
+      </button>
+      
+      <button (click)="swipeRight()" [disabled]="isAnimating()" class="flex-1 px-6 py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+        </svg>
+        Send Request
+      </button>
+    </div>
+
+    <!-- Counter -->
+    <div *ngIf="suggestions().length > 0 && currentCardIndex() < suggestions().length" 
+         class="text-center mt-6 text-gray-600">
+      {{ currentCardIndex() + 1 }} / {{ suggestions().length }}
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes swipeLeft {
+    to {
+      transform: translateX(-150%) rotate(-30deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes swipeRight {
+    to {
+      transform: translateX(150%) rotate(30deg);
+      opacity: 0;
+    }
+  }
+
+  .swipe-left {
+    animation: swipeLeft 0.3s ease-out forwards;
+  }
+
+  .swipe-right {
+    animation: swipeRight 0.3s ease-out forwards;
+  }
+</style>

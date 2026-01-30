@@ -208,6 +208,20 @@ export class UserService {
   }
   
   /**
+   * Get all users including banned (for admin dashboard)
+   */
+  async getAllUsers(): Promise<User[]> {
+    try {
+      const usersRef = collection(this.firestore, 'users');
+      const snapshot = await getDocs(usersRef);
+      return snapshot.docs.map(doc => doc.data() as User);
+    } catch (error) {
+      console.error('Error fetching all users:', error);
+      throw error;
+    }
+  }
+  
+  /**
    * Update user statistics
    */
   async updateUserStatistics(userId: string, updates: {

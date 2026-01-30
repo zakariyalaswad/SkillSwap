@@ -1,8 +1,3 @@
-/**
- * Notification Service
- * Handles notifications for users
- */
-
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, addDoc, getDocs, query, where, updateDoc, doc } from '@angular/fire/firestore';
 import { Notification, NotificationType } from '../../models';
@@ -19,7 +14,7 @@ export class NotificationService {
   /**
    * Create a notification
    */
-  async createNotification(notification: Notification): Promise<string> {
+  async createNotification(notification: Omit<Notification, 'id' | 'createdAt'>): Promise<string> {
     try {
       const notificationsRef = collection(this.firestore, 'notifications');
       const docRef = await addDoc(notificationsRef, {

@@ -108,6 +108,12 @@ export class AuthService {
       if (userSnapshot.exists()) {
         const user = userSnapshot.data() as User;
         
+        // Check if user is banned
+        if (user.isBanned) {
+          await signOut(this.auth);
+          throw new Error(`Your account has been banned. Reason: ${user.bannedReason || 'No reason provided'}`);
+        }
+        
         // Update last login time
         await setDoc(userRef, { lastLoginAt: new Date() }, { merge: true });
         

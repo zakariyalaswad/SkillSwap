@@ -80,7 +80,8 @@ export class Requests implements OnInit {
    * Accept a swap request
    */
   async acceptRequest(request: SwapRequest): Promise<void> {
-    const result = await Swal.fire({
+    // Confirm acceptance
+    const confirmResult = await Swal.fire({
       title: 'Accept Swap Request?',
       html: `<strong>${request.senderName}</strong> wants to swap:<br/>They teach: <strong>${request.skillOffered.name}</strong><br/>They want: <strong>${request.skillRequested.name}</strong>`,
       icon: 'question',
@@ -89,8 +90,8 @@ export class Requests implements OnInit {
       cancelButtonText: 'Reject'
     });
 
-    if (!result.isConfirmed) {
-      if (result.isDismissed && result.dismiss === Swal.DismissReason.cancel) {
+    if (!confirmResult.isConfirmed) {
+      if (confirmResult.isDismissed && confirmResult.dismiss === Swal.DismissReason.cancel) {
         this.rejectRequest(request);
       }
       return;
@@ -98,7 +99,7 @@ export class Requests implements OnInit {
 
     try {
       this.isLoading.set(true);
-      console.log('Accepting request with ID:', request.id, 'Full request:', request);
+      console.log('Accepting request with ID:', request.id);
       
       // Update swap request status
       await this.swapService.updateSwapRequestStatus(
@@ -106,23 +107,28 @@ export class Requests implements OnInit {
         SwapRequestStatus.ACCEPTED
       );
 
-      // Get current user info
-      const currentUser = this.authService.getCurrentUser();
-      if (currentUser?.id) {
-        // Create conversation between sender and recipient
-        const conversation = await this.chatService.getOrCreateConversation(
-          request.senderId,
-          request.recipientId,
-          {
-            name1: request.senderName,
-            name2: request.recipientName
-          }
-        );
-        console.log('Conversation created:', conversation.id);
-      }
+      // Create or get conversation between sender and recipient
+      const conversation = await this.chatService.getOrCreateConversation(
+        request.senderId,
+        request.recipientId,
+        {
+          name1: request.senderName,
+          name2: request.recipientName
+        }
+      );
       
-      Swal.fire('Success', 'Swap request accepted! You can now schedule a session.', 'success');
-      this.loadRequests();
+      console.log('Request accepted. Conversation:', conversation.id);
+      
+      await Swal.fire({
+        icon: 'success',
+        title: 'Request Accepted!',
+        html: `You can now chat with <strong>${request.senderName}</strong> to arrange your skill exchange.`,
+        confirmButtonText: 'Go to Chat',
+        timer: 3000
+      });
+      
+      // Navigate to chat page
+      this.router.navigate(['/home/chat']);
     } catch (error) {
       console.error('Error accepting request:', error);
       Swal.fire('Error', 'Failed to accept request', 'error');
@@ -246,47 +252,5 @@ export class Requests implements OnInit {
    */
   isAccepted(request: SwapRequest): boolean {
     return request.status === SwapRequestStatus.ACCEPTED;
-  }
-
-  /**
-   * Schedule a session for accepted request
-   */
-  async scheduleSession(request: SwapRequest): Promise<void> {
-    try {
-      this.isLoading.set(true);
-
-      // Get current user
-      const currentUser = this.authService.getCurrentUser();
-      if (!currentUser?.id) {
-        Swal.fire('Error', 'User not authenticated', 'error');
-        return;
-      }
-
-      // Get the other user's data (sender or recipient depending on which request)
-      const otherUserId = currentUser.id === request.senderId ? request.recipientId : request.senderId;
-      const otherUserName = currentUser.id === request.senderId ? request.recipientName : request.senderName;
-      
-      // Create or get conversation between the two users
-      const conversation = await this.chatService.getOrCreateConversation(
-        currentUser.id,
-        otherUserId,
-        {
-          name1: currentUser.name,
-          name2: otherUserName
-        }
-      );
-
-      Swal.fire('Success', 'Conversation created! You can now chat to schedule a session.', 'success');
-      
-      // Navigate to chat page with the conversation
-      this.router.navigate(['/home/chat'], { 
-        queryParams: { conversationId: conversation.id } 
-      });
-    } catch (error) {
-      console.error('Error scheduling session:', error);
-      Swal.fire('Error', 'Failed to start conversation', 'error');
-    } finally {
-      this.isLoading.set(false);
-    }
   }
 }

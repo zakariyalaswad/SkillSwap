@@ -5,7 +5,7 @@
 
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, doc, setDoc, getDoc, getDocs, query, where, updateDoc, deleteDoc, addDoc } from '@angular/fire/firestore';
-import { SwapRequest, SwapRequestStatus, Session, Swap, Rating } from '../../models';
+import { SwapRequest, SwapRequestStatus, Swap, Rating } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -142,36 +142,6 @@ export class SwapService {
       });
     } catch (error) {
       console.error('Error updating swap request status:', error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Create a session from accepted swap request
-   */
-  async createSession(session: Session): Promise<string> {
-    try {
-      const sessionRef = collection(this.firestore, 'sessions');
-      const docRef = await addDoc(sessionRef, session);
-      return docRef.id;
-    } catch (error) {
-      console.error('Error creating session:', error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Get sessions for a user
-   */
-  async getUserSessions(userId: string): Promise<Session[]> {
-    try {
-      const sessionRef = collection(this.firestore, 'sessions');
-      const q = query(sessionRef, where('participantIds', 'array-contains', userId));
-      
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => doc.data() as Session);
-    } catch (error) {
-      console.error('Error fetching user sessions:', error);
       throw error;
     }
   }

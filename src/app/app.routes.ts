@@ -1,29 +1,16 @@
 import { Routes } from '@angular/router';
-import { Signin } from './auth/components/signin/signin';
-import { Signup } from './auth/components/signup/signup';
 import { Home } from './features/visiteur/home/home';
-import { authGuard, onboardingGuard, guestGuard } from './auth/guards/auth.guard';
-
+import { authGuard, onboardingGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
     {
-        path: 'signin',
-        component: Signin,
-        canActivate: [guestGuard]
-    },  
-    {
-        path: 'signup',
-        component: Signup,
-        canActivate: [guestGuard]
+        path: '',
+        component: Home
     },
     {
         path:'onboarding',
         loadComponent:()=>import('./features/onboarding/onboarding.component').then(m=>m.OnboardingComponent),
         canActivate: [authGuard]
-    },
-    {
-        path: '',
-        component: Home
     },
     {
         path: 'home',

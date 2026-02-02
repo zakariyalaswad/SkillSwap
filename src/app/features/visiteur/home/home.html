@@ -1,32 +1,166 @@
 <app-header></app-header>
 
-
-<section>
-
-
-<swiper-container class="w-full h-screen" slides-per-view="1" loop="true" pagination="true" navigation="true" style="display: block;">
-    <swiper-slide>
-        <img src="coolaboration.webp" alt="Collaboration" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-    </swiper-slide>
-
-    <swiper-slide>
-        <img src="frezza.webp" alt="Frezza" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-    </swiper-slide>
-
-    <swiper-slide>
-        <img src="puzzle.jpg" alt="Puzzle" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-    </swiper-slide>
-</swiper-container>
-
-
-
-
+<!-- Hero Section -->
+<section class="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center overflow-hidden">
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20"></div>
+  
+  <div class="container mx-auto px-4 py-20 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-block mb-4 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full">
+        <span class="text-blue-400 text-sm font-semibold">🎯 Skill Exchange Platform</span>
+      </div>
+      
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
+        Share Skills, Learn Together,<br>
+        <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">Grow Stronger</span>
+      </h1>
+      
+      <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Connect with talented individuals, exchange skills without money, and build meaningful learning relationships in our vibrant community.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <button (click)="scrollToFeatures()" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+          <span>Get Started Free</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </button>
+        <button (click)="scrollToHowItWorks()" class="px-8 py-4 bg-slate-800/50 border border-slate-700 text-white font-semibold rounded-lg hover:bg-slate-800 transition-all duration-300">
+          How It Works
+        </button>
+      </div>
+      
+      <!-- Stats -->
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-white mb-2">{{ stats().activeUsers }}+</div>
+          <div class="text-slate-400 text-sm">Active Users</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-white mb-2">{{ stats().skillsShared }}+</div>
+          <div class="text-slate-400 text-sm">Skills Shared</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-white mb-2">{{ stats().successfulSwaps }}+</div>
+          <div class="text-slate-400 text-sm">Successful Swaps</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-white mb-2">{{ stats().avgRating }}</div>
+          <div class="text-slate-400 text-sm">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
 </section>
 
+<!-- Features Section -->
+<section id="features" class="py-20 bg-slate-900">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Why Choose SkillSwap?</h2>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto">Everything you need to exchange skills and grow your expertise</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      @for (feature of features(); track feature.title) {
+        <div class="group p-8 bg-slate-800/50 border border-slate-700 rounded-2xl hover:bg-slate-800 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-gradient-to-br {{ feature.gradient }} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-3xl">{{ feature.icon }}</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3">{{ feature.title }}</h3>
+          <p class="text-slate-400 leading-relaxed">{{ feature.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
 
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">How It Works</h2>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto">Start exchanging skills in three simple steps</p>
+    </div>
+    
+    <div class="max-w-5xl mx-auto">
+      @for (step of steps(); track step.number) {
+        <div class="flex flex-col md:flex-row gap-8 items-center mb-12 last:mb-0">
+          <div class="flex-shrink-0">
+            <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-full flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-blue-500/50">
+              {{ step.number }}
+            </div>
+          </div>
+          <div class="flex-1 bg-slate-800/50 border border-slate-700 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-3">{{ step.title }}</h3>
+            <p class="text-slate-400 text-lg leading-relaxed">{{ step.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
 
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-20 bg-slate-900">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">What Our Users Say</h2>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto">Real stories from our amazing community</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      @for (testimonial of testimonials(); track testimonial.name) {
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300">
+          <div class="flex items-center gap-1 mb-4">
+            @for (star of [1,2,3,4,5]; track star) {
+              <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+            }
+          </div>
+          <p class="text-slate-300 text-lg mb-6 leading-relaxed italic">"{{ testimonial.quote }}"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-gradient-to-br {{ testimonial.avatarGradient }} rounded-full flex items-center justify-center text-white font-bold text-lg">
+              {{ testimonial.name.charAt(0) }}
+            </div>
+            <div>
+              <div class="text-white font-semibold">{{ testimonial.name }}</div>
+              <div class="text-slate-400 text-sm">{{ testimonial.role }}</div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
 
-
-
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-br from-blue-900 via-slate-900 to-cyan-900 relative overflow-hidden">
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+        Ready to Start Your<br>
+        <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Skill Exchange Journey?</span>
+      </h2>
+      <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Join thousands of learners and experts who are already growing together. It's free, fast, and fun!
+      </p>
+      <button (click)="navigateToSignup()" class="px-10 py-5 bg-white text-blue-900 font-bold text-lg rounded-lg hover:shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all duration-300">
+        Join SkillSwap Today
+      </button>
+    </div>
+  </div>
+</section>
 
 <app-footer></app-footer>

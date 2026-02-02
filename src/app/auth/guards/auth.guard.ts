@@ -3,11 +3,19 @@
  * Protects routes that require authentication
  */
 
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const platformId = inject(PLATFORM_ID);
+  
+  // Allow all routes during SSR (guards will be evaluated on client)
+  if (!isPlatformBrowser(platformId)) {
+    return true;
+  }
+  
   const authService = inject(AuthService);
   const router = inject(Router);
   
@@ -21,6 +29,13 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
 };
 
 export const onboardingGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const platformId = inject(PLATFORM_ID);
+  
+  // Allow all routes during SSR
+  if (!isPlatformBrowser(platformId)) {
+    return true;
+  }
+  
   const authService = inject(AuthService);
   const router = inject(Router);
   
@@ -40,6 +55,13 @@ export const onboardingGuard: CanActivateFn = (route: ActivatedRouteSnapshot, st
 };
 
 export const guestGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const platformId = inject(PLATFORM_ID);
+  
+  // Allow all routes during SSR
+  if (!isPlatformBrowser(platformId)) {
+    return true;
+  }
+  
   const authService = inject(AuthService);
   const router = inject(Router);
   

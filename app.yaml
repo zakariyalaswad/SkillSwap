@@ -1,5 +1,5 @@
-kind: wasmer.io/App.v0
 name: swappz
+app_id: da_nkPI5tJU7zM8
 owner: zakariyalaswad
 package: .
-app_id: da_nkPI5tJU7zM8
+kind: wasmer.io/App.v0

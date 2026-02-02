@@ -1,47 +1,120 @@
-<footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-6xl mx-auto px-4 py-12">
-        <!-- Main Content -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+<footer class="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 py-16">
+        <!-- Newsletter Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-8 mb-12">
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="text-3xl font-bold text-white mb-3">Stay Updated</h3>
+                <p class="text-blue-50 mb-6">Get the latest tips, success stories, and skill exchange opportunities delivered to your inbox.</p>
+                
+                @if (!subscribed()) {
+                    <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input 
+                            type="email" 
+                            [(ngModel)]="email"
+                            placeholder="Enter your email"
+                            class="flex-1 px-4 py-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-blue-100 focus:outline-none focus:ring-2 focus:ring-white/50"
+                        />
+                        <button 
+                            (click)="subscribeNewsletter()"
+                            [disabled]="isSubscribing() || !email()"
+                            class="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                        >
+                            @if (isSubscribing()) {
+                                <span>Subscribing...</span>
+                            } @else {
+                                <span>Subscribe</span>
+                            }
+                        </button>
+                    </div>
+                } @else {
+                    <div class="flex items-center justify-center gap-2 text-white font-semibold">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Thanks for subscribing!</span>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
             <!-- Brand -->
-            <div>
-                <h3 class="text-white font-bold text-lg mb-4">SkillSwap</h3>
-                <p class="text-sm text-gray-400">Share skills, learn together, grow stronger.</p>
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-white font-bold text-2xl">SkillSwap</h3>
+                </div>
+                <p class="text-slate-400 mb-6 leading-relaxed">Share skills, learn together, grow stronger. Join thousands of learners exchanging knowledge without money.</p>
+                
+                <!-- Social Links -->
+                <div class="flex gap-3">
+                    @for (social of socialLinks; track social.name) {
+                        <a [href]="social.url" [title]="social.name" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 {{social.color}} transition-all hover:scale-110 hover:-translate-y-1">
+                            @if (social.icon === 'twitter') {
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+                            } @else if (social.icon === 'facebook') {
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+                            } @else if (social.icon === 'linkedin') {
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg>
+                            } @else if (social.icon === 'instagram') {
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            }
+                        </a>
+                    }
+                </div>
             </div>
             
-            <!-- Links -->
+            <!-- Product Links -->
             <div>
-                <h4 class="text-white font-semibold mb-4">Product</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Features</a></li>
-                    <li><a href="#" class="hover:text-white transition">Pricing</a></li>
-                    <li><a href="#" class="hover:text-white transition">Security</a></li>
+                <h4 class="text-white font-semibold mb-4 text-lg">Product</h4>
+                <ul class="space-y-3">
+                    <li><a href="#features" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Features</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Pricing</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Security</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Roadmap</a></li>
                 </ul>
             </div>
             
-            <!-- Company -->
+            <!-- Company Links -->
             <div>
-                <h4 class="text-white font-semibold mb-4">Company</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition">About</a></li>
-                    <li><a href="#" class="hover:text-white transition">Blog</a></li>
-                    <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                <h4 class="text-white font-semibold mb-4 text-lg">Company</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">About Us</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Blog</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Careers</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Press</a></li>
                 </ul>
             </div>
             
-            <!-- Legal -->
+            <!-- Legal Links -->
             <div>
-                <h4 class="text-white font-semibold mb-4">Legal</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Privacy</a></li>
-                    <li><a href="#" class="hover:text-white transition">Terms</a></li>
-                    <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                <h4 class="text-white font-semibold mb-4 text-lg">Legal</h4>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Privacy Policy</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Terms of Service</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Cookie Policy</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors hover:translate-x-1 inline-block">Contact</a></li>
                 </ul>
             </div>
         </div>
         
-        <!-- Divider -->
-        <div class="border-t border-gray-800 pt-8">
-            <p class="text-center text-sm text-gray-400">&copy; 2024 SkillSwap. All rights reserved.</p>
+        <!-- Bottom Bar -->
+        <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm">&copy; {{ currentYear }} SkillSwap. All rights reserved.</p>
+            <button 
+                (click)="scrollToTop()"
+                class="group flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all hover:scale-105"
+            >
+                <span class="text-sm text-slate-400 group-hover:text-white">Back to top</span>
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                </svg>
+            </button>
         </div>
     </div>
 </footer>

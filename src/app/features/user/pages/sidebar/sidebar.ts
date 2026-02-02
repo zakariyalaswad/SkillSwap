@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { LucideAngularModule, House,UserRound,HeartPlus, MessageCircle, Sparkles, UserStar, LogOut, Compass } from 'lucide-angular';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
-import { AuthService } from '../../../../auth/services/auth-service';
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,12 +23,11 @@ export class Sidebar {
 
   async logout(){
     try{
-      await this.auth.signout();
+      await this.auth.signOut();
       console.log('Logout successful');
-      this.router.navigate(['signin'])
+      this.router.navigate(['/']);
     }catch(error){
-      console.log(error)
+      console.log(error);
     }
   }
-
 }

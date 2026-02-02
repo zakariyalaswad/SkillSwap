@@ -44,7 +44,10 @@ app.use((req, res, next) => {
     .then((response) =>
       response ? writeResponseToNodeResponse(response, res) : next(),
     )
-    .catch(next);
+    .catch((err) => {
+      console.error('SSR Error:', err);
+      res.status(500).send('Internal Server Error: ' + err.message);
+    });
 });
 
 /**

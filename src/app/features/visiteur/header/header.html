@@ -1,24 +1,85 @@
-<header class="bg-slate-900 border-b border-slate-800">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 class=" text-3xl font-bold bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">SWAPPZ</h1>
-        <nav class="flex gap-8 items-center">
-            <a href="#" class="text-slate-300 hover:text-white relative transition-colors duration-300 group font-medium">
-                Home
-                <span
-                    class="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300 rounded-full"></span>
-            </a>
-            <a href="#" class="text-slate-300 hover:text-white relative transition-colors duration-300 group font-medium">
-                About
-                <span class="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300 rounded-full"></span>
-            </a>
-            <a href="#" class="text-slate-300 hover:text-white relative transition-colors duration-300 group font-medium">
-                Contact
-                <span class="absolute bottom-0 left-0 w-0 h-1 bg-linear-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300 rounded-full"></span>
-            </a>
-        </nav>
-        <div class="flex gap-3">
-            <button (click)="login()" class="px-6 py-2.5 bg-slate-800 text-white font-semibold rounded-lg border border-slate-700 hover:bg-slate-700 transition-all duration-300">Sign In</button>
-            <button (click)="register()" class="px-6 py-2.5 bg-linear-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5 transition-all duration-300">Sign Up</button>
+<header [class]="'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ' + (isScrolled() ? 'bg-slate-900/95 backdrop-blur-lg shadow-xl border-b border-slate-800' : 'bg-transparent')">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer" (click)="scrollToSection('hero')">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Swappz</h1>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex gap-8 items-center">
+                <button (click)="scrollToSection('features')" class="text-slate-300 hover:text-white relative transition-colors duration-300 group font-medium">
+                    Features
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                </button>
+                <button (click)="scrollToSection('how-it-works')" class="text-slate-300 hover:text-white relative transition-colors duration-300 group font-medium">
+                    How It Works
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                </button>
+                <button (click)="scrollToSection('testimonials')" class="text-slate-300 hover:text-white relative transition-colors duration-300 group font-medium">
+                    Testimonials
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                </button>
+            </nav>
+            
+            <!-- Desktop Auth Buttons -->
+            <div class="hidden md:flex gap-3">
+                <button (click)="login()" class="px-6 py-2.5 bg-slate-800 text-white font-semibold rounded-lg border border-slate-700 hover:bg-slate-700 hover:scale-105 transition-all duration-300">
+                    Sign In
+                </button>
+                <button (click)="register()" data-signup-trigger class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300">
+                    Sign Up
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button (click)="toggleMobileMenu()" class="md:hidden p-2 text-slate-300 hover:text-white transition-colors">
+                @if (!mobileMenuOpen()) {
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                } @else {
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                }
+            </button>
         </div>
+        
+        <!-- Mobile Menu -->
+        @if (mobileMenuOpen()) {
+            <div class="md:hidden mt-4 py-4 border-t border-slate-700 animate-fade-in">
+                <nav class="flex flex-col gap-4">
+                    <button (click)="scrollToSection('features')" class="text-slate-300 hover:text-white text-left py-2 px-4 rounded-lg hover:bg-slate-800 transition-all">
+                        Features
+                    </button>
+                    <button (click)="scrollToSection('how-it-works')" class="text-slate-300 hover:text-white text-left py-2 px-4 rounded-lg hover:bg-slate-800 transition-all">
+                        How It Works
+                    </button>
+                    <button (click)="scrollToSection('testimonials')" class="text-slate-300 hover:text-white text-left py-2 px-4 rounded-lg hover:bg-slate-800 transition-all">
+                        Testimonials
+                    </button>
+                    <div class="flex flex-col gap-2 mt-4">
+                        <button (click)="login()" class="px-6 py-2.5 bg-slate-800 text-white font-semibold rounded-lg border border-slate-700 hover:bg-slate-700 transition-all">
+                            Sign In
+                        </button>
+                        <button (click)="register()" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-500/50 transition-all">
+                            Sign Up
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        }
     </div>
 </header>
+@if (showSigninModal()) {
+    <app-signin (closeModal)="closeSignin()" (switchToSignup)="switchToSignup()"></app-signin>
+}
+@if (showSignupModal()) {
+    <app-signup (closeModal)="closeSignup()" (switchToSignin)="switchToSignin()"></app-signup>
+}

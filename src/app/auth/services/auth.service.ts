@@ -3,7 +3,8 @@
  * Handles user registration, login, and authentication state
  */
 
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, User as FirebaseUser } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc, getDoc, DocumentReference } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -13,8 +14,9 @@ import { User } from '../../models';
   providedIn: 'root'
 })
 export class AuthService {
-  private auth = inject(Auth);
-  private firestore = inject(Firestore);
+  private auth = inject(Auth, { optional: true });
+  private firestore = inject(Firestore, { optional: true });
+  private platformId = inject(PLATFORM_ID);
   
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
@@ -23,17 +25,21 @@ export class AuthService {
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
   
   constructor() {
-    this.initializeAuthState();
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeAuthState();
+    }
   }
   
   /**
    * Initialize authentication state by listening to Firebase auth changes
    */
   private initializeAuthState(): void {
+    if (!this.auth || !this.firestore) return;
+    
     onAuthStateChanged(this.auth, async (firebaseUser) => {
       if (firebaseUser) {
         // User is logged in - fetch their profile data
-        const userRef = doc(this.firestore, 'users', firebaseUser.uid);
+        const userRef = doc(this.firestore!, 'users', firebaseUser.uid);
         const userSnapshot = await getDoc(userRef);
         
         if (userSnapshot.exists()) {
@@ -53,6 +59,9 @@ export class AuthService {
    * Sign up with email and password
    */
   async signUp(email: string, password: string, name: string): Promise<{ uid: string; user: User }> {
+    if (!this.auth || !this.firestore) {
+      throw new Error('Firebase not available');
+    }
     try {
       // Create Firebase Auth user
       const result = await createUserWithEmailAndPassword(this.auth, email, password);
@@ -97,6 +106,9 @@ export class AuthService {
    * Sign in with email and password
    */
   async signIn(email: string, password: string): Promise<User> {
+    if (!this.auth || !this.firestore) {
+      throw new Error('Firebase not available');
+    }
     try {
       const result = await signInWithEmailAndPassword(this.auth, email, password);
       const firebaseUser = result.user;
@@ -133,6 +145,9 @@ export class AuthService {
    * Sign out
    */
   async signOut(): Promise<void> {
+    if (!this.auth) {
+      throw new Error('Firebase not available');
+    }
     try {
       await signOut(this.auth);
       this.currentUserSubject.next(null);
@@ -160,7 +175,7 @@ export class AuthService {
    * Get current Firebase user
    */
   getCurrentFirebaseUser(): FirebaseUser | null {
-    return this.auth.currentUser;
+    return this.auth?.currentUser || null;
   }
 
   /**

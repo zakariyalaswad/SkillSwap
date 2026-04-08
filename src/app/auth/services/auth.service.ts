@@ -17,6 +17,7 @@ export class AuthService {
   private auth = inject(Auth, { optional: true });
   private firestore = inject(Firestore, { optional: true });
   private platformId = inject(PLATFORM_ID);
+  private storageKey = 'skillswap:user';
   
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
@@ -26,6 +27,7 @@ export class AuthService {
   
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
+      this.loadUserFromStorage();
       this.initializeAuthState();
     }
   }
@@ -46,11 +48,13 @@ export class AuthService {
           const userData = userSnapshot.data() as User;
           this.currentUserSubject.next(userData);
           this.isAuthenticatedSubject.next(true);
+          this.persistUser(userData);
         }
       } else {
         // User is logged out
         this.currentUserSubject.next(null);
         this.isAuthenticatedSubject.next(false);
+        this.clearStoredUser();
       }
     });
   }
@@ -95,6 +99,7 @@ export class AuthService {
       
       this.currentUserSubject.next(newUser);
       this.isAuthenticatedSubject.next(true);
+      this.persistUser(newUser);
       
       return { uid: firebaseUser.uid, user: newUser };
     } catch (error: any) {
@@ -131,6 +136,7 @@ export class AuthService {
         
         this.currentUserSubject.next(user);
         this.isAuthenticatedSubject.next(true);
+        this.persistUser(user);
         
         return user;
       } else {
@@ -152,6 +158,7 @@ export class AuthService {
       await signOut(this.auth);
       this.currentUserSubject.next(null);
       this.isAuthenticatedSubject.next(false);
+      this.clearStoredUser();
     } catch (error: any) {
       throw new Error(`Sign out failed: ${error.message}`);
     }
@@ -183,5 +190,42 @@ export class AuthService {
    */
   isAuthenticated(): boolean {
     return this.isAuthenticatedSubject.value;
+  }
+
+  /**
+   * Persist user locally to survive reloads
+   */
+  private persistUser(user: User): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(user));
+    } catch (error) {
+      console.warn('Unable to persist user locally:', error);
+    }
+  }
+
+  /**
+   * Hydrate auth state from local storage if present
+   */
+  private loadUserFromStorage(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    try {
+      const raw = localStorage.getItem(this.storageKey);
+      if (!raw) return;
+      const user = JSON.parse(raw) as User;
+      this.currentUserSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
+    } catch (error) {
+      console.warn('Unable to load stored user:', error);
+      this.clearStoredUser();
+    }
+  }
+
+  /**
+   * Remove stored user when logging out
+   */
+  private clearStoredUser(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    localStorage.removeItem(this.storageKey);
   }
 }

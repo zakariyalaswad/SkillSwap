@@ -11,11 +11,12 @@ import { UserService } from '../../../../shared/services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../../../models';
 import Swal from 'sweetalert2';
+import { SkillManagerComponent } from './skill-manager.component';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, SkillManagerComponent],
   templateUrl: './settings.html',
   styleUrl: './settings.css'
 })
@@ -25,7 +26,7 @@ export class SettingsComponent {
   private router = inject(Router);
   
   protected currentUser = this.authService.getCurrentUser();
-  protected activeTab = signal<'profile' | 'security' | 'privacy' | 'notifications'>('profile');
+  protected activeTab = signal<'profile' | 'security' | 'privacy' | 'notifications' | 'skills'>('profile');
   protected isLoading = signal(false);
   
   // Store initial values for comparison

@@ -168,6 +168,56 @@ export class UserService {
       throw error;
     }
   }
+
+  /**
+   * Update a skill in user's teaching list
+   */
+  async updateTeachingSkill(userId: string, skillId: string, updates: Partial<Skill>): Promise<void> {
+    try {
+      const userRef = doc(this.firestore, 'users', userId);
+      const userSnapshot = await getDoc(userRef);
+      
+      if (userSnapshot.exists()) {
+        const user = userSnapshot.data() as User;
+        const updatedSkills = user.skillsITeach.map(s => 
+          s.id === skillId ? { ...s, ...updates } : s
+        );
+        
+        await updateDoc(userRef, {
+          skillsITeach: updatedSkills,
+          updatedAt: new Date()
+        });
+      }
+    } catch (error) {
+      console.error('Error updating teaching skill:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Update a skill in user's learning list
+   */
+  async updateLearningSkill(userId: string, skillId: string, updates: Partial<Skill>): Promise<void> {
+    try {
+      const userRef = doc(this.firestore, 'users', userId);
+      const userSnapshot = await getDoc(userRef);
+      
+      if (userSnapshot.exists()) {
+        const user = userSnapshot.data() as User;
+        const updatedSkills = user.skillsIWantToLearn.map(s => 
+          s.id === skillId ? { ...s, ...updates } : s
+        );
+        
+        await updateDoc(userRef, {
+          skillsIWantToLearn: updatedSkills,
+          updatedAt: new Date()
+        });
+      }
+    } catch (error) {
+      console.error('Error updating learning skill:', error);
+      throw error;
+    }
+  }
   
   /**
    * Search users by skills they teach or want to learn

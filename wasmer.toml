@@ -1,6 +1,10 @@
 [package]
-name = "swappz"
-version = "1.0.0"
+name = "zakariyalaswad/swappz"
+version = "0.1.0"
+description = "SkillSwap static build for Wasmer Edge"
 
-[app]
-kind = "docker"
+[dependencies]
+"sharrattj/static-web-server" = "1"
+
+[fs]
+public = "dist/SkillSwap/browser"

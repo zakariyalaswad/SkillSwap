@@ -1,73 +1,73 @@
-<aside class="w-16 md:w-64 bg-linear-to-b from-gray-950 to-gray-800 h-screen py-6 shadow-xl sticky top-0 overflow-y-auto">
-    <nav class="space-y-1" aria-label="Primary">
+<aside class="fixed md:sticky bottom-0 md:bottom-auto left-0 md:left-0 right-0 md:right-auto w-full md:w-64 h-20 md:h-screen md:top-16 bg-linear-to-r md:bg-linear-to-b from-gray-950 to-gray-800 py-2 md:py-6 shadow-xl overflow-x-auto md:overflow-y-auto z-40">
+    <nav class="flex md:flex-col space-x-1 md:space-x-0 md:space-y-1 h-full md:h-auto px-2 md:px-0" aria-label="Primary">
         <a routerLink="/home" routerLinkActive="bg-white/10 text-white ring-1 ring-white/10" [routerLinkActiveOptions]="{ exact: true }"
            #rlaHome="routerLinkActive"
            [attr.aria-current]="rlaHome.isActive ? 'page' : null"
            title="Home"
-           class="group relative flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaHome.isActive"></span>
+           class="group relative flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-3 md:py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200 flex-shrink-0">
+            <span class="absolute left-0 md:left-0 top-1/2 md:top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaHome.isActive"></span>
             <lucide-angular [img]="House" class="my-icon w-5 h-5"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Home</span>
+            <span class="hidden md:inline text-xs md:text-base">Home</span>
         </a>
 
         <a routerLink="/home/requests" routerLinkActive="bg-white/10 text-white ring-1 ring-white/10"
            #rlaReq="routerLinkActive"
            [attr.aria-current]="rlaReq.isActive ? 'page' : null"
            title="Requests"
-           class="group relative flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaReq.isActive"></span>
+           class="group relative flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-3 md:py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200 flex-shrink-0">
+            <span class="absolute left-0 md:left-0 top-1/2 md:top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaReq.isActive"></span>
             <lucide-angular [img]="HeartPlus" class="my-icon w-5 h-5"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Requests</span>
+            <span class="hidden md:inline text-xs md:text-base">Requests</span>
         </a>
 
         <a routerLink="/home/chat" routerLinkActive="bg-white/10 text-white ring-1 ring-white/10"
            #rlaChat="routerLinkActive"
            [attr.aria-current]="rlaChat.isActive ? 'page' : null"
            title="Chat"
-           class="group relative flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaChat.isActive"></span>
+           class="group relative flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-3 md:py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200 flex-shrink-0">
+            <span class="absolute left-0 md:left-0 top-1/2 md:top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaChat.isActive"></span>
             <lucide-angular [img]="MessageCircle" class="my-icon w-5 h-5"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Chat</span>
+            <span class="hidden md:inline text-xs md:text-base">Chat</span>
         </a>
 
         <a routerLink="/home/suggestions" routerLinkActive="bg-white/10 text-white ring-1 ring-white/10"
            #rlaSug="routerLinkActive"
            [attr.aria-current]="rlaSug.isActive ? 'page' : null"
            title="Suggestions"
-           class="group relative flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaSug.isActive"></span>
+           class="group relative flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-3 md:py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200 flex-shrink-0">
+            <span class="absolute left-0 md:left-0 top-1/2 md:top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaSug.isActive"></span>
             <lucide-angular [img]="UserStar" class="my-icon w-5 h-5"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Suggestions</span>
+            <span class="hidden md:inline text-xs md:text-base">Suggestions</span>
         </a>
 
         <a routerLink="/home/explore" routerLinkActive="bg-white/10 text-white ring-1 ring-white/10"
            #rlaExplore="routerLinkActive"
            [attr.aria-current]="rlaExplore.isActive ? 'page' : null"
            title="Explore"
-           class="group relative flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaExplore.isActive"></span>
+           class="group relative flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-3 md:py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200 flex-shrink-0">
+            <span class="absolute left-0 md:left-0 top-1/2 md:top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaExplore.isActive"></span>
             <lucide-angular [img]="Compass" class="my-icon w-5 h-5"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Explore</span>
+            <span class="hidden md:inline text-xs md:text-base">Explore</span>
         </a>
 
         <a routerLink="/home/matches" routerLinkActive="bg-white/10 text-white ring-1 ring-white/10"
            #rlaMatch="routerLinkActive"
            [attr.aria-current]="rlaMatch.isActive ? 'page' : null"
            title="Best Matches"
-           class="group relative flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaMatch.isActive"></span>
+           class="group relative flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-3 md:py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200 flex-shrink-0">
+            <span class="absolute left-0 md:left-0 top-1/2 md:top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaMatch.isActive"></span>
             <lucide-angular [img]="Sparkles" class="my-icon w-5 h-5"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Best Matches</span>
+            <span class="hidden md:inline text-xs md:text-base">Best Matches</span>
         </a>
 
         <a routerLink="/home/setting" routerLinkActive="bg-white/10 text-white ring-1 ring-white/10"
            #rlaSetting="routerLinkActive"
            [attr.aria-current]="rlaSetting.isActive ? 'page' : null"
            title="Setting"
-           class="group relative flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaSetting.isActive"></span>
+           class="group relative flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-3 md:py-3 rounded-lg text-slate-300/90 hover:bg-white/5 hover:text-white transition-all duration-200 flex-shrink-0">
+            <span class="absolute left-0 md:left-0 top-1/2 md:top-1/2 -translate-y-1/2 w-1 h-6 rounded-r bg-indigo-500 opacity-0 transition" [class.opacity-100]="rlaSetting.isActive"></span>
             <lucide-angular [img]="UserRound" class="my-icon w-5 h-5"></lucide-angular>
-            <span class="hidden sm:hidden md:inline">Setting</span>
+            <span class="hidden md:inline text-xs md:text-base">Setting</span>
         </a>
     </nav>
 </aside>

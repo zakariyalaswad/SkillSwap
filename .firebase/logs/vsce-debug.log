@@ -38924,3 +38924,9 @@ E0408 11:53:49.233969    7406 watch.go:40] Failed to load config from "/home/zak
  {"metadata":{"emulator":{"name":"dataconnect"},"message":"E0408 11:53:59.242801    7406 watch.go:40] Failed to load config from \"/home/zakariya/SkillSwap/dataconnect\": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`\n"}}
 [debug] [2026-04-08T10:54:09.233Z] E0408 11:54:09.233569    7406 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
  {"metadata":{"emulator":{"name":"dataconnect"},"message":"E0408 11:54:09.233569    7406 watch.go:40] Failed to load config from \"/home/zakariya/SkillSwap/dataconnect\": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`\n"}}
+[debug] [2026-04-08T10:54:19.239Z] E0408 11:54:19.239372    7406 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E0408 11:54:19.239372    7406 watch.go:40] Failed to load config from \"/home/zakariya/SkillSwap/dataconnect\": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`\n"}}
+[debug] [2026-04-08T10:54:29.242Z] E0408 11:54:29.242807    7406 watch.go:40] Failed to load config from "/home/zakariya/SkillSwap/dataconnect": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E0408 11:54:29.242807    7406 watch.go:40] Failed to load config from \"/home/zakariya/SkillSwap/dataconnect\": could not find dataconnect.yaml in `/home/zakariya/SkillSwap/dataconnect`\n"}}
+[info] [Firebase Plugin] Stopping Data Connect toolkit
+[warn] ⚠  Data Connect Emulator has exited upon receiving signal: SIGINT 
